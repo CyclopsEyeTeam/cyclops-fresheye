@@ -245,3 +245,75 @@ test('a timeout only closes its own question', async ($, on) => {
   expect(await ui.find({ key: 'fresheye-switch' })).toBeDefined()
   expect(rec.commands.some((c) => c.command === 'resume')).toBe(false)
 })
+
+// ---- v0.2: on-screen strip, restored line, account ------------------------------------------------------
+
+test('strip: shown above the prompt in FreshEye, alongside what else draws there', async ($, on) => {
+  stubs(on, { current: { id: 'fresh-1' }, pairs: PAIRS, skipRegister: true })
+  on('command.register', () => ({ value: undefined }))
+  await $.session.start({ surface: 'terminal', isInteractive: true, cwd: '/repo' })
+  for (const surface of ['terminal', 'desktop'] as const) {
+    const ui = await $.ui.mount({ ...BAND, surface } as any)
+    expect(await ui.find({ type: 'Text', text: '◎ FreshEye · Fresh Context' })).toBeDefined()
+    expect(await ui.find({ type: 'Text', text: /original orig-1 kept/ })).toBeDefined()
+    expect(await ui.find({ type: 'Text', text: /withheld: CLAUDE\.md/ })).toBeDefined()
+    expect(await ui.find({ type: 'Text', text: 'drawn by Claude Code' })).toBeDefined()   // e.g. Spark's band is kept
+    await ui.unmount()
+  }
+})
+
+test('strip: absent in the original; what else draws there is untouched', async ($, on) => {
+  stubs(on, { current: { id: 'orig-1' }, pairs: PAIRS, skipRegister: true })
+  on('command.register', () => ({ value: undefined }))
+  await $.session.start({ surface: 'terminal', isInteractive: true, cwd: '/repo' })
+  const ui = await $.ui.mount(BAND as any)
+  expect(await ui.find({ type: 'Text', text: /FreshEye/ })).toBeUndefined()
+  expect(await ui.find({ type: 'Text', text: 'drawn by Claude Code' })).toBeDefined()
+})
+
+test('return: "original context restored" shows, then clears by itself; account records it', async ($, on) => {
+  const cur = { id: 'fresh-1' }
+  const { rec, clock } = stubs(on, { current: cur, pairs: PAIRS })
+  await $.session.start({ surface: 'terminal', isInteractive: true, cwd: '/repo' })
+  await $.command.run({ command: 'fresheye', args: '' })
+  await clock.settle()
+  let ui = await $.ui.mount(BAND as any)
+  await ui.press({ key: 'fresheye-switch' })
+  await clock.settle()
+  await ui.unmount()
+  ui = await $.ui.mount(BAND as any)
+  expect(await ui.find({ type: 'Text', text: /Original context restored · orig-1/ })).toBeDefined()
+  await ui.unmount()
+  await clock.advance(9_000)
+  ui = await $.ui.mount(BAND as any)
+  expect(await ui.find({ type: 'Text', text: /restored/ })).toBeUndefined()
+  const ledger = rec.store.get('ledger') as any[]
+  expect(ledger.map((x) => x.event)).toEqual(['return'])
+  expect(ledger[0]).toMatchObject({ origin: 'orig-1', fresh: 'fresh-1' })
+})
+
+test('account: open is recorded with its topic; /fresheye-log shows it without telling the model', async ($, on) => {
+  const cur = { id: 'orig-1' }
+  const { rec, clock } = stubs(on, { current: cur })
+  await $.command.run({ command: 'fresheye', args: '"Review the parser with fresh eyes please"' })
+  await clock.settle()
+  const ledger = rec.store.get('ledger') as any[]
+  expect(ledger.map((x) => x.event)).toEqual(['open'])
+  expect(ledger[0]).toMatchObject({ origin: 'orig-1', fresh: 'fresh-1', topic: 'Review the parser with fresh eyes please' })
+  const out = await $.command.run({ command: 'fresheye-log', args: '' })
+  expect(out.text).toBeUndefined()                                  // nothing for the model to read
+  expect(rec.logs.join('\n')).toMatch(/opened FreshEye  original orig-1 → fresh fresh-1  “Review the parser/)
+})
+
+test('account: cancelled and timed-out questions are recorded', async ($, on) => {
+  const { rec, clock } = stubs(on, { current: { id: 'fresh-1' }, pairs: PAIRS })
+  await $.command.run({ command: 'fresheye', args: '' })
+  await clock.settle()
+  const ui = await $.ui.mount(BAND as any)
+  await ui.press({ key: 'fresheye-stay' })
+  await ui.unmount()
+  await $.command.run({ command: 'fresheye', args: '' })
+  await clock.settle()
+  await clock.advance(61_000)
+  expect((rec.store.get('ledger') as any[]).map((x) => x.event)).toEqual(['confirm-cancelled', 'confirm-timeout'])
+})

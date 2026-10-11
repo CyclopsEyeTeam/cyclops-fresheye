@@ -141,6 +141,20 @@ gate("G12 no transcript deleted", not missing, {"sessionsSeen": len(ids), "missi
 hook_runs = sum(1 for _ in open(f"{X}/repo/.remember-hook-ran")) if os.path.exists(f"{X}/repo/.remember-hook-ran") else 0
 gate("G5b Remember hooks still RUN (side effects not disabled)", hook_runs > 0, {"userPromptSubmitHookRuns": hook_runs})
 
+# ---------- v0.2 account ----------
+store = glob.glob(f"{X}/cfg/plugins/store/cyclops-fresheye*.json")
+ledger = json.load(open(store[0])).get("ledger", []) if store else []
+events = [e["event"] for e in ledger]
+expected = ["open", "return", "enter", "open", "return",   # S1
+            "open", "confirm-timeout",                      # S2
+            "return",                                       # S3
+            "stale"]                                        # S4
+s1_open = ledger[0] if ledger else {}
+gate("G16 account records every open/switch/return in order", events == expected
+     and s1_open.get("origin") == origin and s1_open.get("fresh") == fresh1 and "FRESHONLY-K7Q2" in s1_open.get("topic", "")
+     and ledger[3].get("origin") == origin and ledger[3].get("from") == fresh1 and ledger[3].get("fresh") == fresh2,
+     {"events": events, "firstEntry": s1_open})
+
 perf = {"session.start ms": [d.get("ms") for run in ("S1-roundtrip", "S2-ask-default", "S3-restart", "S4-stale") for e, d in fe_debug(run) if e == "session.start"],
         "open ms (clear→prompt sent)": [d.get("ms") for run in ("S1-roundtrip", "S2-ask-default") for e, d in fe_debug(run) if e == "open.done"],
         "switch ms (/resume)": [d.get("ms") for run in ("S1-roundtrip", "S3-restart") for e, d in fe_debug(run) if e == "switch.done"]}

@@ -1,7 +1,7 @@
 // Pure-logic unit tests (synthetic: no Claude Code session involved).
 import { expect, test } from 'claude-code/testing'
 import {
-  addPair, freshContextBlocks, MAX_PAIRS, normaliseMode, normaliseTimeoutSeconds, originFor, parsePrompt,
+  addPair, formatLedgerLine, freshContextBlocks, ledgerAppend, MAX_LEDGER, MAX_PAIRS, topicOf, normaliseMode, normaliseTimeoutSeconds, originFor, parsePrompt,
   pickTarget, projectDirName, withholdAttachment, withholdSection,
 } from '../hooks/core.js'
 
@@ -67,4 +67,15 @@ test('withholding rules: hook context and memory/instruction attachments only', 
   expect(withholdSection('tools')).toBe(false)
   expect(freshContextBlocks([{ name: 'claudeMd', text: 'x' }, { name: 'currentDate', text: 'd' }]))
     .toEqual([{ name: 'currentDate', text: 'd' }])
+})
+
+test('account helpers: bounded ledger, one-line topic, readable line', async () => {
+  let l: any[] = []
+  for (let i = 0; i < MAX_LEDGER + 3; i++) l = ledgerAppend(l, { n: i })
+  expect(l.length).toBe(MAX_LEDGER)
+  expect(l[0].n).toBe(3)
+  expect(topicOf('a\n  b   c')).toBe('a b c')
+  expect(topicOf('x'.repeat(200)).length).toBe(80)
+  expect(formatLedgerLine({ at: '2026-10-11T14:32:05.000Z', event: 'return', origin: 'orig-12345678', fresh: 'fresh-12345678' }))
+    .toBe('2026-10-11 14:32  returned to original  original orig-123 → fresh fresh-12')
 })

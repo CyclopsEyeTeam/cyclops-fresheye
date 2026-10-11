@@ -10,12 +10,15 @@
 // Claude Code mods API (early access, v2.1.287+). Built and accepted against Claude Code 2.1.296.
 
 import {
-  MODE_LABEL, addPair, freshContextBlocks, normaliseMode, normaliseTimeoutSeconds, originFor, parsePrompt,
-  pickTarget, projectDirName, short, withholdAttachment, withholdSection,
+  MODE_LABEL, addPair, formatLedgerLine, freshContextBlocks, hhmm, ledgerAppend, normaliseMode, normaliseTimeoutSeconds,
+  originFor, parsePrompt, pickTarget, projectDirName, short, topicOf, withholdAttachment, withholdSection,
 } from './core.js'
 
 const STORE_PAIRS = 'pairs'
 const STORE_PENDING = 'pending'
+const STORE_LEDGER = 'ledger'
+const RESTORED_SHOW_MS = 8_000
+const ACCENT = 'cyan'
 const INTERRUPTED_AFTER_MS = 120_000
 
 let mode = 'ask'
@@ -29,6 +32,8 @@ let confirm = null        // { fromId, toId, direction, timer }
 let active = false        // is the current conversation a FreshEye conversation (drives the indicator)
 let busy = false          // a /fresheye run is between its command and its first state change
 let storeOk = true        // could the pairs table be read
+let activePair = null     // the pair record of the current FreshEye conversation (drives the strip)
+let restored = null       // { originId, freshId, timer } for a few seconds after returning to the original
 
 const debug = ($, msg, data) => { try { $.ui.log(`cyclops-fresheye ${msg}${data ? ' ' + JSON.stringify(data) : ''}`, { to: 'debug' }) } catch {} }
 const sid = async ($) => { try { return await $.session.id() } catch { return null } }
@@ -52,7 +57,24 @@ async function isFresh($) {
 
 async function refreshIndicator($) {
   const now = await isFresh($)
-  if (now !== active) { active = now; $.ui.invalidate('ui.render') }
+  const pair = now ? pairs[await sid($)] ?? null : null
+  if (now !== active || pair !== activePair) { active = now; activePair = pair; $.ui.invalidate('ui.render') }
+}
+
+/** Append one entry to FreshEye's account (kept in its store; never sent to the model). Never throws. */
+async function account($, event, data = {}) {
+  try {
+    const at = new Date(await $.clock.now()).toISOString()
+    await $.store.set(STORE_LEDGER, ledgerAppend(await $.store.get(STORE_LEDGER), { at, event, ...data }))
+  } catch (err) { debug($, 'account write failed', { error: String(err) }) }
+}
+
+function showRestored($, originId, freshId) {
+  if (restored) { try { restored.timer.cancel() } catch {} }
+  const mark = { originId, freshId, timer: null }
+  mark.timer = $.clock.after(RESTORED_SHOW_MS, () => { if (restored === mark) { restored = null; $.ui.invalidate('ui.render') } })
+  restored = mark
+  $.ui.invalidate('ui.render')
 }
 
 function invalidateContext($) {
@@ -113,6 +135,7 @@ async function openFresh($, prompt) {
     const back = freshId && freshId !== startId ? ` You are in a new empty conversation; /resume ${startId} returns to where you were.` : ''
     $.ui.log(`FreshEye: could not open a fresh context — ${failure}. Your prompt was NOT sent anywhere.${back}`)
     $.ui.toast('FreshEye did not open — prompt not sent')
+    await account($, 'open-failed', { origin: startId, reason: failure })
     await refreshIndicator($)
     return
   }
@@ -127,6 +150,7 @@ async function openFresh($, prompt) {
   if (!saved) {
     // Without a stored pair this conversation could not stay fresh after a restart, so don't send the prompt.
     await refreshIndicator($)
+    await account($, 'open-failed', { origin: startId, fresh: freshId, reason: 'pair not recorded' })
     $.ui.log(`FreshEye: could not record the FreshEye pair, so your prompt was NOT sent. You are in a new empty conversation; /resume ${startId} returns to where you were.`)
     return
   }
@@ -141,6 +165,7 @@ async function openFresh($, prompt) {
   await $.prompt.submit({ text: prompt, asUser: true })
   const t1 = await $.clock.now()
   debug($, 'open.done', { originId, freshId, ms: t1 - t0 })
+  await account($, 'open', { origin: originId, fresh: freshId, from: startId !== originId ? startId : undefined, topic: topicOf(prompt), ms: t1 - t0 })
   $.ui.toast(`FreshEye opened · original ${short(originId)} kept`)
 }
 
@@ -157,6 +182,7 @@ async function offerSwitch($) {
   const exists = await transcriptExists($, target.targetId, target.root)
   if (exists === false) {
     debug($, 'stale', { here, target })
+    await account($, 'stale', { from: here, to: target.targetId })
     $.ui.log(`FreshEye: the ${what} conversation ${short(target.targetId)} can’t be found any more. Nothing was switched or deleted; use /resume to choose one yourself.`)
     return
   }
@@ -183,6 +209,7 @@ async function offerSwitch($) {
     $.ui.invalidate('ui.render')
     $.ui.toast('FreshEye: no answer — stayed here')
     debug($, 'confirm.timeout', { here })
+    account($, 'confirm-timeout', { from: here, to: question.toId })
   })
   confirm = question
   $.ui.invalidate('ui.render')
@@ -195,7 +222,7 @@ async function answerConfirm($, accepted) {
   confirm = null
   try { c.timer.cancel() } catch {}
   $.ui.invalidate('ui.render')
-  if (!accepted) { $.ui.toast('FreshEye: stayed here'); debug($, 'confirm.cancelled', { here: c.fromId }); return }
+  if (!accepted) { $.ui.toast('FreshEye: stayed here'); debug($, 'confirm.cancelled', { here: c.fromId }); await account($, 'confirm-cancelled', { from: c.fromId, to: c.toId }); return }
   if ((await sid($)) !== c.fromId) { $.ui.log('FreshEye: the conversation changed while asking. Nothing was switched.'); return }
   await doSwitch($, c.fromId, { direction: c.direction, targetId: c.toId, root: c.root })
 }
@@ -209,6 +236,7 @@ async function doSwitch($, here, target) {
       await $.command.run({ command: 'resume', args: target.targetId })   // verified: append-only, original intact
     } catch (err) {
       $.ui.log(`FreshEye: the switch was refused (${String(err)}). You are still in ${short(here)}.`)
+      await account($, 'switch-failed', { from: here, to: target.targetId, reason: 'refused' })
       return
     }
     const now = await sid($)
@@ -216,10 +244,18 @@ async function doSwitch($, here, target) {
     await refreshIndicator($)
     if (now !== target.targetId) {
       debug($, 'switch.mismatch', { here, wanted: target.targetId, now })
+      await account($, 'switch-failed', { from: here, to: target.targetId, reason: `landed in ${short(now)}` })
       $.ui.log(`FreshEye: the switch did not complete — you are in ${short(now)}, not ${short(target.targetId)}. Nothing was deleted.`)
       return
     }
-    debug($, 'switch.done', { from: here, to: now, direction: target.direction, ms: (await $.clock.now()) - t0 })
+    const ms = (await $.clock.now()) - t0
+    debug($, 'switch.done', { from: here, to: now, direction: target.direction, ms })
+    if (target.direction === 'return') {
+      await account($, 'return', { origin: now, fresh: here, ms })
+      showRestored($, now, here)
+    } else {
+      await account($, 'enter', { origin: here, fresh: now, ms })
+    }
     $.ui.toast(target.direction === 'return' ? `Original context restored · ${short(now)}` : `${MODE_LABEL} · ${short(now)}`)
   } finally {
     switching = false
@@ -241,12 +277,14 @@ export const register = (on, options = {}) => {
         await $.store.delete(STORE_PENDING)
         $.ui.log(`FreshEye: an earlier /fresheye was interrupted before its prompt was sent. The original conversation ${short(pending.originId)} was not changed.`)
         debug($, 'recovered.interrupted', pending)
+        await account($, 'interrupted', { origin: pending.originId })
       }
     } catch {}
     if (!storeOk) $.ui.log('FreshEye: could not read its records. A FreshEye conversation resumed now is NOT protected from inherited context.')
     await refreshIndicator($)
     try {
       await $.command.register({ name: 'fresheye', description: 'Open a fresh context (/fresheye "prompt"), or switch back to the original (/fresheye)', argumentHint: '["prompt"]' })
+      await $.command.register({ name: 'fresheye-log', description: 'Show FreshEye\u2019s account: when it opened, switched and returned', argumentHint: '[count]', immediate: true })
     } catch (err) { debug($, 'command.register failed', { error: String(err) }) }
     debug($, 'session.start', { ms: (await $.clock.now()) - t0, pairs: Object.keys(pairs).length, active, mode, timeoutMs })
     return r
@@ -262,6 +300,16 @@ export const register = (on, options = {}) => {
     busy = true
     later($, 0, async () => { try { await (prompt ? openFresh($, prompt) : offerSwitch($)) } finally { busy = false } })
     return prompt ? { text: 'FreshEye: opening a fresh context. The prompt goes only to the new conversation.' } : {}
+  })
+
+  // /fresheye-log: the account, shown as dim lines Claude does not read (never sent to the model).
+  on('command.run', { command: 'fresheye-log' }, async ($, e) => {
+    const n = Math.min(100, Math.max(1, parseInt(String(e.args ?? '').trim(), 10) || 12))
+    let ledger = []
+    try { ledger = (await $.store.get(STORE_LEDGER)) || [] } catch {}
+    if (ledger.length === 0) { $.ui.log('FreshEye account: nothing recorded yet.'); return {} }
+    $.ui.log(`FreshEye account \u00b7 last ${Math.min(n, ledger.length)} of ${ledger.length}:\n` + ledger.slice(-n).map(formatLedgerLine).join('\n'))
+    return {}
   })
 
   // The original conversation must never be sent the FreshEye prompt: store its /fresheye command row with the
@@ -313,17 +361,32 @@ export const register = (on, options = {}) => {
     return next({ ...e, props: { ...e.props, modes: [...e.props.modes, MODE_LABEL] } })
   })
 
-  on('ui.render', { component: 'AbovePrompt' }, ($, e, next) => {
-    if (!confirm || e.props.hasSurvey) return next(e)
+  on('ui.render', { component: 'AbovePrompt' }, async ($, e, next) => {
+    const below = await next(e)                                 // keep whatever else draws here (e.g. Spark)
+    if (e.props.hasSurvey || !(confirm || active || restored)) return below
     const { Box, Text, Button } = $.ui.resolve(e)
-    const leaving = confirm.direction === 'return' ? 'FreshEye' : 'original'
-    const going = confirm.direction === 'return' ? 'original' : 'FreshEye'
-    return h(Box, { flexDirection: 'column' },
-      h(Text, { bold: true }, `◎ FreshEye · switch conversations?`),
-      h(Text, {}, `Leave ${leaving} ${short(confirm.fromId)} and resume ${going} ${short(confirm.toId)}. Nothing is deleted.`),
-      h(Box, { gap: 2 },
-        h(Button, { key: 'fresheye-stay', label: 'Stay here', autoFocus: true, onPress: () => answerConfirm($, false) }),
-        h(Button, { key: 'fresheye-switch', label: 'Switch', onPress: () => answerConfirm($, true) }),
-        h(Text, { dimColor: true }, `(stays here after ${Math.round(timeoutMs / 1000)}s)`)))
+    let ours
+    if (confirm) {
+      const leaving = confirm.direction === 'return' ? 'FreshEye' : 'original'
+      const going = confirm.direction === 'return' ? 'original' : 'FreshEye'
+      ours = h(Box, { flexDirection: 'column' },
+        h(Text, { bold: true, color: ACCENT }, `\u25ce FreshEye \u00b7 switch conversations?`),
+        h(Text, {}, `Leave ${leaving} ${short(confirm.fromId)} and resume ${going} ${short(confirm.toId)}. Nothing is deleted.`),
+        h(Box, { gap: 2 },
+          h(Button, { key: 'fresheye-stay', label: 'Stay here', autoFocus: true, onPress: () => answerConfirm($, false) }),
+          h(Button, { key: 'fresheye-switch', label: 'Switch', onPress: () => answerConfirm($, true) }),
+          h(Text, { dimColor: true }, `(stays here after ${Math.round(timeoutMs / 1000)}s)`)))
+    } else if (active) {
+      const p = activePair
+      ours = h(Box, { flexDirection: 'column', key: 'fresheye-strip' },
+        h(Text, { wrap: 'truncate-end' },
+          h(Text, { bold: true, color: ACCENT }, MODE_LABEL),
+          h(Text, { dimColor: true }, p ? `  \u00b7 opened ${hhmm(p.createdAt)} \u00b7 original ${short(p.originId)} kept` : '  \u00b7 opening\u2026')),
+        h(Text, { dimColor: true, wrap: 'truncate-end' }, 'withheld: CLAUDE.md \u00b7 memory \u00b7 hook context   \u00b7   /fresheye to switch back'))
+    } else {
+      ours = h(Text, { dimColor: true, wrap: 'truncate-end', key: 'fresheye-restored' },
+        `\u25ce Original context restored \u00b7 ${short(restored.originId)} \u00b7 FreshEye ${short(restored.freshId)} kept in /resume`)
+    }
+    return below ? h(Box, { flexDirection: 'column' }, ours, below) : ours
   })
 }

@@ -1,6 +1,6 @@
 {
   "name": "cyclops-fresheye",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "FreshEye: a fresh active context in the same terminal (/fresheye \"prompt\"), with a confirmed switch back to the untouched original (/fresheye).",
   "author": { "name": "Cyclops Eye Team" },
   "keywords": ["context", "fresh-context", "review", "mod"],

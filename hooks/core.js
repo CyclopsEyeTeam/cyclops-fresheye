@@ -85,3 +85,39 @@ export function freshContextBlocks(blocks) {
 export function withholdSection(name) {
   return name === 'memory'
 }
+
+// ---- account (an append-only record of what FreshEye did) ------------------------------------------------
+export const MAX_LEDGER = 1000
+
+/** Returns a new ledger with `entry` appended; the oldest entries drop off past MAX_LEDGER. */
+export function ledgerAppend(ledger, entry) {
+  const list = Array.isArray(ledger) ? ledger : []
+  return [...list, entry].slice(-MAX_LEDGER)
+}
+
+/** The first words of a prompt, one line, for the account (not the whole prompt). */
+export function topicOf(prompt, max = 80) {
+  const one = String(prompt ?? '').replace(/\s+/g, ' ').trim()
+  return one.length > max ? one.slice(0, max - 1) + '…' : one
+}
+
+/** HH:MM in the machine's local time. */
+export function hhmm(ms) {
+  const d = new Date(ms)
+  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
+}
+
+const VERB = {
+  open: 'opened FreshEye', 'open-failed': 'could not open', return: 'returned to original', enter: 'entered FreshEye',
+  stale: 'target not found', 'switch-failed': 'switch failed', 'confirm-cancelled': 'stayed (cancelled)',
+  'confirm-timeout': 'stayed (no answer)', interrupted: 'earlier open interrupted',
+}
+
+/** One readable line per ledger entry, e.g. "2026-10-11 14:32  opened FreshEye  original 27662d61 → fresh a0e4a8b2  "Review the…"" */
+export function formatLedgerLine(e) {
+  const when = String(e.at ?? '').replace('T', ' ').slice(0, 16)
+  const ids = e.fresh || e.origin || e.from || e.to
+    ? [e.origin && `original ${short(e.origin)}`, e.fresh && `fresh ${short(e.fresh)}`, !e.origin && e.from && `from ${short(e.from)}`, !e.fresh && e.to && `to ${short(e.to)}`].filter(Boolean).join(' → ')
+    : ''
+  return [when, VERB[e.event] ?? e.event, ids, e.topic ? `“${e.topic}”` : '', e.reason ? `(${e.reason})` : ''].filter(Boolean).join('  ')
+}
