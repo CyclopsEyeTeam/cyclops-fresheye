@@ -5,13 +5,13 @@ import { expect, mock, test } from 'claude-code/testing'
 
 type Rec = { logs: string[]; toasts: string[]; commands: { command: string; args?: string }[]; submitted: string[]; store: Map<string, unknown> }
 
-function stubs(on: any, opts: { current: { id: string }; pairs?: Record<string, unknown>; surfaces?: string[]; clearFails?: boolean; exists?: boolean; skipRegister?: boolean }) {
+function stubs(on: any, opts: { current: { id: string }; pairs?: Record<string, unknown>; surfaces?: string[]; clearFails?: boolean; exists?: boolean; skipRegister?: boolean; pairsSetFails?: boolean }) {
   const rec: Rec = { logs: [], toasts: [], commands: [], submitted: [], store: new Map() }
   if (opts.pairs) rec.store.set('pairs', opts.pairs)
   const clock = mock.clock(on)
   mock.env(on, { CLAUDE_CONFIG_DIR: '/cfg' })
   on('store.get', ($: any, e: any) => ({ value: rec.store.get(e.key) }))
-  on('store.set', ($: any, e: any) => { rec.store.set(e.key, e.value); return { value: undefined } })
+  on('store.set', ($: any, e: any) => { if (opts.pairsSetFails && e.key === 'pairs') return { deny: 'disk full' }; rec.store.set(e.key, e.value); return { value: undefined } })
   on('store.delete', ($: any, e: any) => { rec.store.delete(e.key); return { value: undefined } })
   on('session.id', () => ({ value: opts.current.id }))
   on('session.root', () => ({ value: '/repo' }))
@@ -208,4 +208,40 @@ test('indicator: absent in the original conversation', async ($, on) => {
   const MODE = { plugin: 'cyclops-fresheye', component: 'SessionMode', requestId: 'session-mode', surface: 'terminal', viewport: { columns: 100, rows: 30 }, props: { modes: ['plan'] } } as const
   const ui = await $.ui.mount(MODE as any)
   expect(await ui.find({ type: 'Text', text: 'plan' })).toBeDefined()
+})
+
+test('race: a second /fresheye before the first settles is refused (one /clear, one prompt)', async ($, on) => {
+  const cur = { id: 'orig-1' }
+  const { rec, clock } = stubs(on, { current: cur })
+  await $.command.run({ command: 'fresheye', args: '"first"' })
+  const second = await $.command.run({ command: 'fresheye', args: '"second"' })
+  await clock.settle()
+  expect(second.text).toMatch(/already in progress/)
+  expect(rec.commands.filter((c) => c.command === 'clear').length).toBe(1)
+  expect(rec.submitted).toEqual(['first'])
+})
+
+test('store failure after /clear: prompt not sent, way back named', async ($, on) => {
+  const cur = { id: 'orig-1' }
+  const { rec, clock } = stubs(on, { current: cur, pairsSetFails: true })
+  await $.command.run({ command: 'fresheye', args: '"x"' })
+  await clock.settle()
+  expect(rec.submitted).toEqual([])
+  expect(rec.logs.join('\n')).toMatch(/\/resume orig-1/)
+})
+
+test('a timeout only closes its own question', async ($, on) => {
+  const { rec, clock } = stubs(on, { current: { id: 'fresh-1' }, pairs: PAIRS })
+  await $.command.run({ command: 'fresheye', args: '' })
+  await clock.settle()
+  let ui = await $.ui.mount(BAND as any)
+  await ui.press({ key: 'fresheye-stay' })
+  await ui.unmount()
+  await clock.advance(30_000)
+  await $.command.run({ command: 'fresheye', args: '' })        // a new question, 30 s later
+  await clock.settle()
+  await clock.advance(31_000)                                     // first question's timer would fire here
+  ui = await $.ui.mount(BAND as any)
+  expect(await ui.find({ key: 'fresheye-switch' })).toBeDefined()
+  expect(rec.commands.some((c) => c.command === 'resume')).toBe(false)
 })

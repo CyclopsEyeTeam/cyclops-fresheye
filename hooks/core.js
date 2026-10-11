@@ -2,7 +2,7 @@
 
 export const MODE_LABEL = '◎ FreshEye · Fresh Context'
 export const SWITCH_MODES = ['ask', 'toggle', 'off']
-export const MAX_PAIRS = 64
+export const MAX_PAIRS = 500 // older pairs drop off; their conversations remain, but are no longer protected if resumed
 
 /** `/fresheye "prompt"` → prompt text; bare `/fresheye` → ''. Strips one pair of wrapping quotes. */
 export function parsePrompt(args) {

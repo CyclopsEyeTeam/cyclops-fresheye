@@ -123,7 +123,7 @@ gate("G9 restart: FreshEye stays fresh and returns to its recorded original",
 s4 = driver("S4-stale")
 s4snap = {r["tag"]: r for r in s4 if r["ev"] == "snap"}
 s4dbg = [e for e, _ in fe_debug("S4-stale")]
-gate("G10 stale original: reported, nothing switched or deleted", "stale" in s4dbg and s4snap["before"]["sid"] == s4snap["after"]["sid"] == fresh2
+gate("G10 stale original: reported, nothing switched; FreshEye removed no transcript", "stale" in s4dbg and s4snap["before"]["sid"] == s4snap["after"]["sid"] == fresh2
      and transcript(origin) is not None, {"debugEvents": s4dbg})
 
 # ---------- S5 non-interactive ----------
@@ -134,7 +134,7 @@ gate("G15 non-interactive: refused, no model turn, nothing sent", "needs an inte
 # ---------- cross-run ----------
 all_snaps = [r for run in ("S1-roundtrip", "S2-ask-default", "S3-restart", "S4-stale") for r in driver(run) if r["ev"] == "snap"]
 perms = {json.dumps(s["permissions"], sort_keys=True) for s in all_snaps}
-gate("G13 permissions identical everywhere (no escalation)", len(perms) == 1 and "ask" in next(iter(perms)), {"decisions": json.loads(next(iter(perms))) if len(perms) == 1 else sorted(perms)})
+gate("G13 permission decisions identical in every conversation (no escalation; session-granted approvals not exercised)", len(perms) == 1 and "ask" in next(iter(perms)), {"decisions": json.loads(next(iter(perms))) if len(perms) == 1 else sorted(perms)})
 ids = {r["sid"] for run in ("S1-roundtrip", "S2-ask-default", "S3-restart", "S4-stale") for r in driver(run) if r.get("sid")}
 missing = sorted(i for i in ids if transcript(i) is None)
 gate("G12 no transcript deleted", not missing, {"sessionsSeen": len(ids), "missing": missing})
