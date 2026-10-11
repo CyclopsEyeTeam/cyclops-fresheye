@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 540" role="img" aria-label="FreshEye: the builder's eyes and fresh eyes">
+<title>Cyclops FreshEye: the builder's eyes and fresh eyes</title>
+<defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="11"/></filter></defs>
+<rect width="1920" height="540" rx="18" fill="#090c11"/>
+<g font-family="Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">
+<clipPath id="l0"><path d="M315 240Q480 112.5 645 240Q480 367.5 315 240Z"/></clipPath>
+<g clip-path="url(#l0)" fill="#ffb454" stroke="#ffb454"><g filter="url(#g)" opacity=".45"><circle cx="480" cy="240" r="56" fill="none" stroke-width="8"/><circle cx="480" cy="240" r="26" stroke="none"/></g><circle cx="480" cy="240" r="56" fill="none" stroke-width="8"/><circle cx="480" cy="240" r="26" stroke="none"/></g>
+<path d="M315 240Q480 112.5 645 240Q480 367.5 315 240Z" fill="none" stroke="#ffb454" stroke-width="2.5"/>
+<text x="480" y="386" fill="#ffb454" font-size="32" font-weight="600">the builder's eyes</text>
+<text x="480" y="414" fill="#96a0ac" font-size="17">everything it knows</text>
+<clipPath id="l1"><path d="M1275 240Q1440 70 1605 240Q1440 410 1275 240Z"/></clipPath>
+<g clip-path="url(#l1)" fill="#5fd7ff" stroke="#5fd7ff"><g filter="url(#g)" opacity=".45"><circle cx="1440" cy="240" r="56" fill="none" stroke-width="8"/><circle cx="1440" cy="240" r="26" stroke="none"/></g><circle cx="1440" cy="240" r="56" fill="none" stroke-width="8"/><circle cx="1440" cy="240" r="26" stroke="none"/></g>
+<path d="M1275 240Q1440 70 1605 240Q1440 410 1275 240Z" fill="none" stroke="#5fd7ff" stroke-width="2.5"/>
+<text x="1440" y="386" fill="#5fd7ff" font-size="32" font-weight="600">fresh eyes</text>
+<text x="1440" y="414" fill="#96a0ac" font-size="17">same model · nothing inherited</text>
+</g>
+</svg>
