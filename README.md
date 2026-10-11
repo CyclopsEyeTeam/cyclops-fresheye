@@ -14,6 +14,22 @@ FreshEye is a context tool. It is not a new identity or a different model. The e
 - **`/fresheye "prompt"`** records the current conversation as the original, starts a new conversation with Claude Code's own `/clear`, then sends your prompt there as your message. It uses the same provider and model.
 - **`/fresheye`** (no prompt) offers to switch between the FreshEye conversation and its recorded original, using Claude Code's own `/resume`. By default it asks first.
 
+## Examples
+
+Ask what the builder can't see for itself, because it built the thing:
+
+```
+/fresheye "Review src/auth as if you had never seen this project. What breaks first?"
+/fresheye "Read docs/design.md and the code. Where do they disagree?"
+/fresheye "This test fails: tests/sync.test.ts. Without our notes, what is the likeliest cause?"
+/fresheye "Before I merge this branch: what is the weakest assumption in it?"
+/fresheye "Explain the payments module to a new teammate in five lines."
+```
+
+Then run `/fresheye`, choose **Switch**, and paste or summarise the review in the original conversation. The builder takes it forward with its full context.
+
+**In practice:** a fresh review of a finished milestone, with no memory of how it was built, named one assumption worth rethinking. Back in the original conversation, the builder turned that finding into a read-only experiment and measured the result.
+
 ## Install
 
 Straight from GitHub:

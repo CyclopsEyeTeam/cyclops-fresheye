@@ -1,7 +1,7 @@
 {
   "name": "cyclops-fresheye",
   "version": "0.2.1",
-  "description": "FreshEye: a fresh active context in the same terminal (/fresheye \"prompt\"), with a confirmed switch back to the untouched original (/fresheye).",
+  "description": "Fresh eyes on your work: the same model reviews it in a fresh context, without CLAUDE.md, memory or hook context, then you switch back with nothing lost.",
   "displayName": "Cyclops FreshEye",
   "author": { "name": "Cyclops Eye Team", "url": "https://github.com/CyclopsEyeTeam" },
   "homepage": "https://github.com/CyclopsEyeTeam/cyclops-fresheye",
