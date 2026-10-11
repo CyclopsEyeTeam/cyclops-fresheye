@@ -2,6 +2,8 @@
 
 <p align="center"><img src="media/fresheye-banner.svg" alt="The builder's eyes (amber: everything it knows) and fresh eyes (cyan: same model, nothing inherited)" width="100%"></p>
 
+<p align="center"><a href="https://www.youtube.com/watch?v=e-C465isMFg"><img src="https://i.ytimg.com/vi/e-C465isMFg/hqdefault.jpg" alt="Watch: FreshEye for Claude Code: Same AI, Fresh Perspective" width="480"></a><br><a href="https://www.youtube.com/watch?v=e-C465isMFg">▶ Watch the demo on YouTube (1:27)</a></p>
+
 `◎ FreshEye · Fresh Context`: open a fresh active context in the same Claude Code terminal, and come back to the untouched original when you choose.
 
 FreshEye is a context tool. It is not a new identity or a different model. The entity keeps its continuity, FreshEye gives it a temporary active context, and the library stays available without always being attached.
