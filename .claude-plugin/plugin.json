@@ -2,7 +2,11 @@
   "name": "cyclops-fresheye",
   "version": "0.2.1",
   "description": "FreshEye: a fresh active context in the same terminal (/fresheye \"prompt\"), with a confirmed switch back to the untouched original (/fresheye).",
-  "author": { "name": "Cyclops Eye Team" },
+  "displayName": "Cyclops FreshEye",
+  "author": { "name": "Cyclops Eye Team", "url": "https://github.com/CyclopsEyeTeam" },
+  "homepage": "https://github.com/CyclopsEyeTeam/cyclops-fresheye",
+  "repository": "https://github.com/CyclopsEyeTeam/cyclops-fresheye",
+  "license": "MIT",
   "keywords": ["context", "fresh-context", "review", "mod"],
   "userConfig": {
     "switchMode": {
