@@ -74,6 +74,14 @@ withheld: CLAUDE.md · memory · hook context   ·   /fresheye to switch back
 
 FreshEye records what it does: each open, switch, return, cancelled or timed-out question, stale reference and failure. Each entry has a time, both conversation ids and, for an open, the first 80 characters of the prompt. Run **`/fresheye-log [count]`** to see the last entries as dim lines that Claude does not read. The account lives in FreshEye's store (`~/.claude/plugins/store/cyclops-fresheye*.json`, key `ledger`), keeps the newest 1,000 entries, and survives reinstalling.
 
+## What FreshEye touches
+
+- **No network.** FreshEye makes no network requests, starts no processes and calls no model itself. Your prompt reaches the model only through Claude Code's own conversation, exactly as if you had typed it.
+- **Claude Code's own commands only.** It switches conversations with the built-in `/clear` and `/resume`, and draws its strip and question through Claude Code's mod interface. There is no keystroke injection and no screen scraping.
+- **Your permissions are untouched.** It never reads, changes or intercepts permission settings, tool approvals or tool calls.
+- **What it reads:** the current conversation's id and model, and whether a recorded conversation's transcript file still exists under your Claude Code config folder (`CLAUDE_CONFIG_DIR`, `HOME` or `USERPROFILE` locate it). It does not read transcript contents.
+- **What it stores, on your machine only:** pairings of FreshEye and original conversation ids, and the account described above, which includes the first 80 characters of each FreshEye prompt. Both live in FreshEye's store under `~/.claude/plugins/store/`. `./uninstaller.sh --purge-records` removes them.
+
 ## Requirements
 
 - Claude Code with mods (v2.1.287 or later). Built and accepted on **Claude Code 2.1.296**.
