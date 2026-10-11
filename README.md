@@ -48,4 +48,4 @@ When the active conversation is a FreshEye one, the prompt footer shows `◎ Fre
 
 ## Docs
 
-[Install, configure, uninstall](docs/INSTALL.md) · [Limitations](docs/LIMITATIONS.md) · [Testing and evidence](docs/TESTING.md) · [Changelog](CHANGELOG.md)
+`./installer.sh` / `./uninstaller.sh` · [Install, configure, uninstall](docs/INSTALL.md) · [Limitations](docs/LIMITATIONS.md) · [Testing and evidence](docs/TESTING.md) · [Changelog](CHANGELOG.md)

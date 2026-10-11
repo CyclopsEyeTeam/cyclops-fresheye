@@ -12,6 +12,26 @@ Run `/plugin` and the dim line under the tabs should say `1 mod active · cyclop
 
 ## 2. Install (user scope)
 
+The easy way is to run this from the cyclops-fresheye folder:
+
+```bash
+./installer.sh                         # options: --mode ask|toggle|off  --timeout 60  --dry-run  --yes
+./uninstaller.sh                       # options: --purge-records (forget pairings)  --dry-run  --yes
+```
+
+The installer:
+
+- checks Claude Code (2.1.287 or later; it warns if the version isn't the tested 2.1.296);
+- validates the mod;
+- adds this folder as the `cyclops-fresheye` marketplace (Claude Code reads the folder itself);
+- installs `cyclops-fresheye@cyclops-fresheye` for your user.
+
+Running it again refreshes the install and applies new `--mode` / `--timeout` values.
+
+The uninstaller removes the plugin and the marketplace entry. It never touches conversations or this folder, and it keeps the pairing records unless you pass `--purge-records`.
+
+What the scripts run, by hand:
+
 From a local folder (it reads the folder you keep):
 
 ```bash
