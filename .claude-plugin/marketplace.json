@@ -1,5 +1,15 @@
 {
   "name": "cyclops-fresheye",
-  "owner": { "name": "Cyclops Eye Team" },
-  "plugins": [{ "name": "cyclops-fresheye", "source": "./" }]
+  "owner": {
+    "name": "Cyclops Eye Team"
+  },
+  "plugins": [
+    {
+      "name": "cyclops-fresheye",
+      "source": "./",
+      "description": "FreshEye: a fresh active context in the same terminal (/fresheye \"prompt\"), with a confirmed switch back to the untouched original (/fresheye).",
+      "version": "0.2.1"
+    }
+  ],
+  "description": "FreshEye: a fresh context in the same Claude Code terminal, and a way back to the untouched original."
 }

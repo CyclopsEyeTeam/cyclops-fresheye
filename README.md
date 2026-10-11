@@ -12,6 +12,24 @@ FreshEye is a context tool. It is not a new identity or a different model. The e
 - **`/fresheye "prompt"`** records the current conversation as the original, starts a new conversation with Claude Code's own `/clear`, then sends your prompt there as your message. It uses the same provider and model.
 - **`/fresheye`** (no prompt) offers to switch between the FreshEye conversation and its recorded original, using Claude Code's own `/resume`. By default it asks first.
 
+## Install
+
+Straight from GitHub:
+
+```bash
+claude plugin marketplace add CyclopsEyeTeam/cyclops-fresheye
+claude plugin install cyclops-fresheye@cyclops-fresheye
+```
+
+Or from a clone, with the installer (checks your Claude Code version and validates the mod first; safe to run again):
+
+```bash
+git clone https://github.com/CyclopsEyeTeam/cyclops-fresheye && cd cyclops-fresheye
+./installer.sh                 # --mode ask|toggle|off  --timeout 60  --dry-run
+```
+
+In an open session, run `/reload-plugins`. To try it for one session without installing: `claude --plugin-dir ./cyclops-fresheye`. More in [Install, configure, uninstall](docs/INSTALL.md).
+
 ## What a FreshEye conversation leaves out
 
 | Withheld in FreshEye | Kept |
@@ -63,3 +81,7 @@ FreshEye records what it does: each open, switch, return, cancelled or timed-out
 ## Docs
 
 `./installer.sh` / `./uninstaller.sh` · [Install, configure, uninstall](docs/INSTALL.md) · [Limitations](docs/LIMITATIONS.md) · [Testing and evidence](docs/TESTING.md) · [Changelog](CHANGELOG.md)
+
+## License
+
+MIT. See [LICENSE](LICENSE). Made by the Cyclops Eye Team.

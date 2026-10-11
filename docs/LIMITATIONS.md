@@ -1,4 +1,4 @@
-# Known limitations (V0.1.0)
+# Known limitations (0.2.1)
 
 **What FreshEye withholds, and what it doesn't**
 

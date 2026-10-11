@@ -1,11 +1,9 @@
 # Install, configure, roll back
 
-> **Status: awaiting review.** Nothing below has been run on your machine. Global installation waits for your go-ahead.
-
 ## 1. Try it for one session (nothing installed)
 
 ```bash
-claude --plugin-dir /path/to/cyclops-fresheye            # or the packaged zip: --plugin-dir cyclops-fresheye-0.1.0.zip
+claude --plugin-dir /path/to/cyclops-fresheye
 ```
 
 Run `/plugin` and the dim line under the tabs should say `1 mod active · cyclops-fresheye`. Leaving the session unloads it.
@@ -39,11 +37,14 @@ claude plugin marketplace add /path/to/cyclops-fresheye
 claude plugin install cyclops-fresheye@cyclops-fresheye
 ```
 
-From GitHub, once the repository is published (inside a Claude Code session):
+Straight from GitHub (no clone needed):
 
+```bash
+claude plugin marketplace add CyclopsEyeTeam/cyclops-fresheye
+claude plugin install cyclops-fresheye@cyclops-fresheye
 ```
-/plugin install cyclops-fresheye --marketplace CyclopsEyeTeam/cyclops-fresheye
-```
+
+Inside a Claude Code session, the same is `/plugin install cyclops-fresheye --marketplace CyclopsEyeTeam/cyclops-fresheye`. Updates arrive with `claude plugin marketplace update cyclops-fresheye`, then `claude plugin update cyclops-fresheye@cyclops-fresheye`.
 
 If a session is already open, run `/reload-plugins` there.
 
