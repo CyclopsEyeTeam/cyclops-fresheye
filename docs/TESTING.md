@@ -49,7 +49,7 @@ acceptance/suite.sh /tmp/fresheye-sandbox      # ~2 minutes, ~12 small model tur
 | S4 stale | S1's original transcript is moved aside, not deleted. Bare `/fresheye` reports it and stays. The file is put back |
 | S5 non-interactive | `claude -p '/fresheye "…"'` is refused with no model turn |
 
-**Gates**: all 17 pass (v0.2.0 adds G16: the account records every open, switch and return, in order) on the release commit. See `evidence/v0-acceptance/report.json`.
+**Gates**: all 17 pass (v0.2.0 adds G16: the account records every open, switch and return, in order) on the release commit. See `evidence/v0.2-acceptance/report.json` (0.1.0: `evidence/v0-acceptance/`).
 
 - G1 the fresh context is created on the same model;
 - G2 / G2b the prompt is delivered only to FreshEye;
