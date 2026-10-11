@@ -1,0 +1,75 @@
+{
+ "run": "S1-roundtrip",
+ "startOn": "turn",
+ "steps": [
+  {
+   "do": "snap",
+   "tag": "origin-before"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "\"FRESHONLY-K7Q2 is this review tag. Without using tools, list every token in your context that contains CANARY or FRESHONLY, one per line, or reply NONE.\"",
+   "wait": "turn"
+  },
+  {
+   "do": "snap",
+   "tag": "fresh1"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "",
+   "wait": "switch"
+  },
+  {
+   "do": "snap",
+   "tag": "origin-back"
+  },
+  {
+   "do": "submit",
+   "text": "Without using tools, list every token in your context that contains CANARY or FRESHONLY, one per line, or reply NONE."
+  },
+  {
+   "do": "snap",
+   "tag": "origin-after-turn"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "",
+   "wait": "switch"
+  },
+  {
+   "do": "submit",
+   "text": "Without using tools, list every token in your context that contains CANARY or FRESHONLY, one per line, or reply NONE."
+  },
+  {
+   "do": "snap",
+   "tag": "fresh1-again"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "\"FRESHONLY-R4M8 is this review tag. Without using tools, list every token in your context that contains CANARY or FRESHONLY, one per line, or reply NONE.\"",
+   "wait": "turn"
+  },
+  {
+   "do": "snap",
+   "tag": "fresh2-from-fresh"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "",
+   "wait": "switch"
+  },
+  {
+   "do": "snap",
+   "tag": "origin-final"
+  },
+  {
+   "do": "done"
+  }
+ ]
+}

@@ -16,8 +16,6 @@ import {
 
 const STORE_PAIRS = 'pairs'
 const STORE_PENDING = 'pending'
-const HELD_PREFIX = '⟨fresheye-held:' // ⟨fresheye-held:<nonce>⟩
-const HELD_RE = /^⟨fresheye-held:([a-z0-9]+)⟩$/
 const INTERRUPTED_AFTER_MS = 120_000
 
 let mode = 'ask'
@@ -29,7 +27,6 @@ let opening = null        // { originId } while /clear is in flight
 let switching = false     // a /resume is in flight
 let confirm = null        // { fromId, toId, direction, timer }
 let active = false        // is the current conversation a FreshEye conversation (drives the indicator)
-const held = new Map()    // nonce -> prompt text, so the prompt never lands in the original's records
 
 const debug = ($, msg, data) => { try { $.ui.log(`cyclops-fresheye ${msg}${data ? ' ' + JSON.stringify(data) : ''}`, { to: 'debug' }) } catch {} }
 const sid = async ($) => { try { return await $.session.id() } catch { return null } }
@@ -220,6 +217,7 @@ export const register = (on, options = {}) => {
   // ---- registration ---------------------------------------------------------------------------------------
   on('session.start', async ($, e, next) => {
     const r = await next(e)
+    const t0 = await $.clock.now()
     await loadPairs($)
     try {
       const pending = await $.store.get(STORE_PENDING)
@@ -233,27 +231,12 @@ export const register = (on, options = {}) => {
     try {
       await $.command.register({ name: 'fresheye', description: 'Open a fresh context (/fresheye "prompt"), or switch back to the original (/fresheye)', argumentHint: '["prompt"]' })
     } catch (err) { debug($, 'command.register failed', { error: String(err) }) }
+    debug($, 'session.start', { ms: (await $.clock.now()) - t0, pairs: Object.keys(pairs).length, active, mode, timeoutMs })
     return r
   })
 
-  // Keep the FreshEye prompt out of the original conversation's records: hold it in memory and let the
-  // command row carry only a reference. (Typed prompts are queued; the queue record would otherwise hold it.)
-  on('prompt.submit', async ($, e, next) => {
-    const m = typeof e.text === 'string' && e.text.match(/^\/fresheye\s+([\s\S]+)$/)
-    if (!m || HELD_RE.test(m[1].trim())) return next(e)
-    const prompt = parsePrompt(m[1])
-    if (!prompt) return next(e)
-    const nonce = Math.random().toString(36).slice(2, 10)
-    held.set(nonce, prompt)
-    return next({ ...e, text: `/fresheye ${HELD_PREFIX}${nonce}⟩` })
-  }).catch(($, e, next) => next(e)) // on failure the text goes through unchanged; the session.append backstop still redacts
-
   on('command.run', { command: 'fresheye' }, async ($, e) => {
-    const raw = String(e.args ?? '').trim()
-    const h = raw.match(HELD_RE)
-    const prompt = h ? held.get(h[1]) ?? '' : parsePrompt(raw)
-    if (h) held.delete(h[1])
-    if (h && !prompt) return { text: 'FreshEye: that prompt is no longer held (was Claude Code restarted?). Nothing was sent.' }
+    const prompt = parsePrompt(e.args)
     if (switching || opening) return { text: 'FreshEye: a switch is already in progress. Nothing was sent or switched.' }
     if (confirm) return { text: 'FreshEye: answer the switch question above the prompt first. Nothing was sent or switched.' }
     let surfaces = []
@@ -263,7 +246,9 @@ export const register = (on, options = {}) => {
     return prompt ? { text: 'FreshEye: opening a fresh context. The prompt goes only to the new conversation.' } : {}
   })
 
-  // Backstop: if a /fresheye command row still carries prompt text (e.g. run by another plugin), store it redacted.
+  // The original conversation must never be sent the FreshEye prompt: store its /fresheye command row with the
+  // arguments withheld. (Claude Code itself still keeps the raw arguments in that row's `commandRun` metadata and,
+  // for queued commands, in a queue-operation record; neither is sent to the model. See docs/LIMITATIONS.md.)
   on('session.append', async ($, e, next) => {
     if (e.door !== 'command') return next(e)
     const redact = (t) => t.replace(/(<command-name>\/fresheye<\/command-name>[\s\S]*?<command-args>)([\s\S]*?)(<\/command-args>)/g,

@@ -1,0 +1,33 @@
+{
+ "run": "S2-ask-default",
+ "startOn": "turn",
+ "steps": [
+  {
+   "do": "snap",
+   "tag": "fresh"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "",
+   "wait": 2500
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "\"SHOULDNOTSEND-ZX9 hello\"",
+   "wait": 2000
+  },
+  {
+   "do": "sleep",
+   "ms": 13000
+  },
+  {
+   "do": "snap",
+   "tag": "fresh-after-timeout"
+  },
+  {
+   "do": "done"
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "run": "S3-restart",
+ "startOn": "turn",
+ "steps": [
+  {
+   "do": "snap",
+   "tag": "fresh-after-restart"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "",
+   "wait": "switch"
+  },
+  {
+   "do": "snap",
+   "tag": "origin-after-restart"
+  },
+  {
+   "do": "done"
+  }
+ ]
+}

@@ -25,7 +25,9 @@ function stubs(on: any, opts: { current: { id: string }; pairs?: Record<string, 
   on('ui.toast', ($: any, e: any) => { rec.toasts.push(e.text); return { value: undefined } })
   on('prompt.submit', ($: any, e: any) => { rec.submitted.push(e.text); return { text: e.text } })
   on('session.start', () => ({ cwd: '/repo' }))
-  on('ui.render', () => ({ type: 'Text', props: {}, children: ['drawn by Claude Code'] }))
+  on('ui.render', ($: any, e: any) => (e.component === 'SessionMode'
+    ? { type: 'Text', props: {}, children: [e.props.modes.join(' & ')] }   // stands for Claude Code's footer
+    : { type: 'Text', props: {}, children: ['drawn by Claude Code'] }))
   on('command.run', ($: any, e: any) => {
     rec.commands.push({ command: e.command, args: e.args })
     if (e.command === 'clear') {
@@ -187,4 +189,23 @@ test('restart: an interrupted open is reported once and cleared', async ($, on) 
   await $.session.start({ surface: 'terminal', isInteractive: true, cwd: '/repo' })
   expect(rec.logs.join('\n')).toMatch(/interrupted before its prompt was sent/)
   expect(rec.store.get('pending')).toBeUndefined()
+})
+
+test('indicator: the footer shows the FreshEye mode only inside a FreshEye conversation', async ($, on) => {
+  const cur = { id: 'fresh-1' }
+  stubs(on, { current: cur, pairs: PAIRS, skipRegister: true })
+  on('command.register', () => ({ value: undefined }))
+  await $.session.start({ surface: 'terminal', isInteractive: true, cwd: '/repo' })
+  const MODE = { plugin: 'cyclops-fresheye', component: 'SessionMode', requestId: 'session-mode', surface: 'terminal', viewport: { columns: 100, rows: 30 }, props: { modes: ['plan'] } } as const
+  const ui = await $.ui.mount(MODE as any)
+  expect(await ui.find({ type: 'Text', text: 'plan & ◎ FreshEye · Fresh Context' })).toBeDefined()
+})
+
+test('indicator: absent in the original conversation', async ($, on) => {
+  stubs(on, { current: { id: 'orig-1' }, pairs: PAIRS, skipRegister: true })
+  on('command.register', () => ({ value: undefined }))
+  await $.session.start({ surface: 'terminal', isInteractive: true, cwd: '/repo' })
+  const MODE = { plugin: 'cyclops-fresheye', component: 'SessionMode', requestId: 'session-mode', surface: 'terminal', viewport: { columns: 100, rows: 30 }, props: { modes: ['plan'] } } as const
+  const ui = await $.ui.mount(MODE as any)
+  expect(await ui.find({ type: 'Text', text: 'plan' })).toBeDefined()
 })

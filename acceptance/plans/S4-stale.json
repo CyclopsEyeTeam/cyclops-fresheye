@@ -1,0 +1,24 @@
+{
+ "run": "S4-stale",
+ "startOn": "start",
+ "startDelayMs": 3000,
+ "steps": [
+  {
+   "do": "snap",
+   "tag": "before"
+  },
+  {
+   "do": "cmd",
+   "command": "fresheye",
+   "args": "",
+   "wait": 4000
+  },
+  {
+   "do": "snap",
+   "tag": "after"
+  },
+  {
+   "do": "done"
+  }
+ ]
+}
