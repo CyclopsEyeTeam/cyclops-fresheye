@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 — 2026-10-11
+
+- **On-screen strip above the prompt** while FreshEye is active: `◎ FreshEye · Fresh Context`, when it opened, which original it keeps, and what is withheld. It draws alongside other mods' bands, such as Spark's, instead of replacing them.
+- **"Original context restored" line** for 8 seconds after returning.
+- **Account (ledger)** of every open, switch, return, question outcome, stale reference and failure, with times and both conversation ids. **`/fresheye-log [count]`** shows it as dim lines that are never sent to the model.
+- The confirmation band also draws alongside other mods' bands now.
+- **Acceptance:** 32 unit/kit tests, plus 17/17 real-session gates (new G16: the account matches every event in order). Accepted on Claude Code 2.1.296.
+
 ## 0.1.0 — 2026-10-11 (proposed)
 
 First release of CyclopsFreshEye V0 as a Claude Code mod. Accepted on Claude Code 2.1.296.

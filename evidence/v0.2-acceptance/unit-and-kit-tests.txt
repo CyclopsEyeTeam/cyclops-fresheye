@@ -1,0 +1,40 @@
+
+tests/core.test.ts:
+(pass) parsePrompt strips one pair of wrapping quotes and keeps inner text [8.27ms]
+(pass) modes and timeouts fall back to safe defaults [2.75ms]
+(pass) projectDirName matches the verified transcript folder naming [1.74ms]
+(pass) pickTarget never guesses [3.80ms]
+(pass) a FreshEye opened from a FreshEye links to the true original [0.84ms]
+(pass) pairs table is bounded and keeps the newest [47.02ms]
+(pass) withholding rules: hook context and memory/instruction attachments only [3.08ms]
+(pass) account helpers: bounded ledger, one-line topic, readable line [64.57ms]
+
+tests/mod.test.ts:
+(pass) registers /fresheye at session start [224.00ms]
+(pass) open: clears first, then sends the prompt only to the new conversation [140.29ms]
+(pass) open: if /clear fails the prompt is not sent anywhere [81.76ms]
+(pass) open: refused without an interactive surface, nothing sent [53.75ms]
+(pass) bare /fresheye with no pair never guesses [55.53ms]
+(pass) ask (default): band shows both conversations; Stay keeps you here [132.26ms]
+(pass) ask (default): Switch resumes exactly the recorded original [90.25ms]
+(pass) ask (default): no answer before the timeout means stay [54.70ms]
+(pass) ask: no drawable surface means stay [62.37ms]
+(pass) a prompt while a switch question is open is refused, not sent [55.08ms]
+(pass) toggle: switches at once [61.75ms]
+(pass) off: never switches [50.69ms]
+(pass) stale reference: missing original is reported, nothing switched or deleted [68.28ms]
+(pass) restart: an interrupted open is reported once and cleared [56.97ms]
+(pass) indicator: the footer shows the FreshEye mode only inside a FreshEye conversation [108.46ms]
+(pass) indicator: absent in the original conversation [69.05ms]
+(pass) race: a second /fresheye before the first settles is refused (one /clear, one prompt) [65.55ms]
+(pass) store failure after /clear: prompt not sent, way back named [53.31ms]
+(pass) a timeout only closes its own question [65.31ms]
+(pass) strip: shown above the prompt in FreshEye, alongside what else draws there [55.29ms]
+(pass) strip: absent in the original; what else draws there is untouched [43.06ms]
+(pass) return: "original context restored" shows, then clears by itself; account records it [83.89ms]
+(pass) account: open is recorded with its topic; /fresheye-log shows it without telling the model [61.27ms]
+(pass) account: cancelled and timed-out questions are recorded [81.49ms]
+
+ 32 pass
+ 0 fail
+Ran 32 tests across 2 files. [2.33s]

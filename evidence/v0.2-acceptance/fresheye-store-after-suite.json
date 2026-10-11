@@ -1,0 +1,89 @@
+{
+  "pairs": {
+    "bfea7855-5cac-4c80-9d68-89dfd5685a74": {
+      "originId": "3229ddd6-782b-4bd8-a546-a2e5527d40af",
+      "originRoot": "/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-v02/repo",
+      "model": "claude-haiku-5-5",
+      "createdAt": 1791725498705
+    },
+    "84412382-5644-4a26-b6d0-d9f9618d5d02": {
+      "originId": "3229ddd6-782b-4bd8-a546-a2e5527d40af",
+      "originRoot": "/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-v02/repo",
+      "model": "claude-haiku-5-5",
+      "createdAt": 1791725506158
+    },
+    "0d2d9d45-62dd-4ef8-8b46-af5991c839d0": {
+      "originId": "aaba5aa3-aec1-4ef2-aa58-50fef160375f",
+      "originRoot": "/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-v02/repo",
+      "model": "claude-haiku-5-5",
+      "createdAt": 1791725517813
+    }
+  },
+  "ledger": [
+    {
+      "at": "2026-10-11T13:31:39.165Z",
+      "event": "open",
+      "origin": "3229ddd6-782b-4bd8-a546-a2e5527d40af",
+      "fresh": "bfea7855-5cac-4c80-9d68-89dfd5685a74",
+      "topic": "FRESHONLY-K7Q2 is this review tag. Without using tools, list every token in you…",
+      "ms": 441
+    },
+    {
+      "at": "2026-10-11T13:31:41.557Z",
+      "event": "return",
+      "origin": "3229ddd6-782b-4bd8-a546-a2e5527d40af",
+      "fresh": "bfea7855-5cac-4c80-9d68-89dfd5685a74",
+      "ms": 172
+    },
+    {
+      "at": "2026-10-11T13:31:44.291Z",
+      "event": "enter",
+      "origin": "3229ddd6-782b-4bd8-a546-a2e5527d40af",
+      "fresh": "bfea7855-5cac-4c80-9d68-89dfd5685a74",
+      "ms": 171
+    },
+    {
+      "at": "2026-10-11T13:31:46.478Z",
+      "event": "open",
+      "origin": "3229ddd6-782b-4bd8-a546-a2e5527d40af",
+      "fresh": "84412382-5644-4a26-b6d0-d9f9618d5d02",
+      "from": "bfea7855-5cac-4c80-9d68-89dfd5685a74",
+      "topic": "FRESHONLY-R4M8 is this review tag. Without using tools, list every token in you…",
+      "ms": 315
+    },
+    {
+      "at": "2026-10-11T13:31:48.651Z",
+      "event": "return",
+      "origin": "3229ddd6-782b-4bd8-a546-a2e5527d40af",
+      "fresh": "84412382-5644-4a26-b6d0-d9f9618d5d02",
+      "ms": 147
+    },
+    {
+      "at": "2026-10-11T13:31:58.291Z",
+      "event": "open",
+      "origin": "aaba5aa3-aec1-4ef2-aa58-50fef160375f",
+      "fresh": "0d2d9d45-62dd-4ef8-8b46-af5991c839d0",
+      "topic": "FRESHONLY-K7Q2 is this review tag. Without using tools, list every token in you…",
+      "ms": 474
+    },
+    {
+      "at": "2026-10-11T13:32:10.516Z",
+      "event": "confirm-timeout",
+      "from": "0d2d9d45-62dd-4ef8-8b46-af5991c839d0",
+      "to": "aaba5aa3-aec1-4ef2-aa58-50fef160375f"
+    },
+    {
+      "at": "2026-10-11T13:32:32.001Z",
+      "event": "return",
+      "origin": "aaba5aa3-aec1-4ef2-aa58-50fef160375f",
+      "fresh": "0d2d9d45-62dd-4ef8-8b46-af5991c839d0",
+      "ms": 370
+    },
+    {
+      "at": "2026-10-11T13:32:46.360Z",
+      "event": "stale",
+      "from": "84412382-5644-4a26-b6d0-d9f9618d5d02",
+      "to": "3229ddd6-782b-4bd8-a546-a2e5527d40af"
+    }
+  ]
+}

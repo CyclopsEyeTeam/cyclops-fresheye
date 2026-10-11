@@ -32,3 +32,5 @@
 **Naming**
 
 15. **Glyph.** `◎` was chosen as suggested, but it is also Keeper's text mark. Change `MODE_LABEL` in `hooks/core.js` if the two need to stay distinct.
+16. **The account stores the first 80 characters of each FreshEye prompt, as plain text,** in FreshEye's store file. It is never sent to the model, but a model with file tools could read it. `./uninstaller.sh --purge-records` removes it.
+17. **The strip was checked by kit tests and drawn in real terminal sessions,** with no validation errors in the debug log. Its exact look in your terminal, and next to Spark, is best judged live.

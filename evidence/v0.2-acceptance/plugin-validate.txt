@@ -1,0 +1,22 @@
+Validating marketplace manifest: /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/.claude-plugin/marketplace.json
+
+⚠ Found 1 warning:
+
+  ❯ description: No marketplace description provided. Adding a description helps users understand what this marketplace offers
+
+Validating hooks: /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/hooks/hooks.json
+
+  ❯ ./register.js hooks: session.start, command.run{command=fresheye}, command.run{command=fresheye-log}, session.append, prompt.context, prompt.section, prompt.attachment, session.end, ui.render{component=SessionMode}, ui.render{component=AbovePrompt}
+  ❯ ./register.js answers its own command: command.run{command=fresheye}
+  ❯ ./register.js answers its own command: command.run{command=fresheye-log}
+  ❯ ./register.js gating hook with .catch: session.append
+  ❯ ./register.js calls: $.clock.after (via later, offerSwitch, showRestored), $.clock.now, $.command.register, $.command.run (via doSwitch, openFresh), $.env.get (via configDir), $.fs.exists (via transcriptExists), $.fs.list (via transcriptExists), $.prompt.submit (via openFresh), $.session.id (via sid), $.session.model (via openFresh), $.session.root (via openFresh), $.session.surfaces, $.store.delete, $.store.get, $.store.set (via account, openFresh, savePairs), $.ui.invalidate (via answerConfirm, invalidateContext, offerSwitch, refreshIndicator, showRestored), $.ui.log, $.ui.resolve, $.ui.toast (via answerConfirm, doSwitch, offerSwitch, openFresh)
+  ❯ ./register.js env writes: nothing
+  ❯ ./register.js env reads: CLAUDE_CONFIG_DIR, HOME, USERPROFILE
+
+ℹ Advice (does not change the verdict):
+
+  ❯ /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/README.md: This README has no line that installs "cyclops-fresheye" from a marketplace. Add the install line, which works in one step on Claude Code 2.1.275 or later. In it, replace <owner>/<repo> with the repository that holds the marketplace.
+      /plugin install cyclops-fresheye --marketplace <owner>/<repo>
+
+✔ Validation passed with warnings

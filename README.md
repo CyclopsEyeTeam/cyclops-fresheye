@@ -36,9 +36,23 @@ The original conversation is never deleted or rewritten. Returning to it restore
 
 Set them in `/config`, with `/plugin configure cyclops-fresheye@cyclops-fresheye`, or under `pluginConfigs` in `~/.claude/settings.json`.
 
-## Indicator
+## On screen
 
-When the active conversation is a FreshEye one, the prompt footer shows `◎ FreshEye · Fresh Context`. A short note appears when FreshEye opens and when the original context is restored. Nothing polls or animates: the mod redraws only when its state changes.
+While a FreshEye conversation is active, a small strip sits above the prompt:
+
+```
+◎ FreshEye · Fresh Context  · opened 14:32 · original 27662d61 kept
+withheld: CLAUDE.md · memory · hook context   ·   /fresheye to switch back
+```
+
+- **The footer** also shows the same `◎ FreshEye · Fresh Context` label.
+- **When you return**, a line reads `◎ Original context restored · … · FreshEye … kept in /resume` for 8 seconds, then clears itself.
+- **Other mods drawing above the prompt** (Spark, for example) stay in place. FreshEye's strip is placed alongside them.
+- **No polling or animation.** It redraws only when its state changes.
+
+## Account
+
+FreshEye records what it does: each open, switch, return, cancelled or timed-out question, stale reference and failure. Each entry has a time, both conversation ids and, for an open, the first 80 characters of the prompt. Run **`/fresheye-log [count]`** to see the last entries as dim lines that Claude does not read. The account lives in FreshEye's store (`~/.claude/plugins/store/cyclops-fresheye*.json`, key `ledger`), keeps the newest 1,000 entries, and survives reinstalling.
 
 ## Requirements
 
