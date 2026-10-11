@@ -7,6 +7,7 @@
   "homepage": "https://github.com/CyclopsEyeTeam/cyclops-fresheye",
   "repository": "https://github.com/CyclopsEyeTeam/cyclops-fresheye",
   "license": "MIT",
+  "icon": "./.claude-plugin/icon.svg",
   "keywords": ["context", "fresh-context", "review", "mod"],
   "userConfig": {
     "switchMode": {
