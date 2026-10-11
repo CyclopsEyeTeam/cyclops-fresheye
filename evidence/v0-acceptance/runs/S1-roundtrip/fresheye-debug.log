@@ -1,0 +1,361 @@
+2026-10-11T12:49:13.115Z [DEBUG] --plugin-dir /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/acceptance/driver is one plugin: .claude-plugin at its top marks it
+2026-10-11T12:49:13.115Z [DEBUG] --plugin-dir /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye is one plugin: .claude-plugin at its top marks it
+2026-10-11T12:49:13.133Z [DEBUG] Read hooks.json for plugin cyclops-fresheye (enabled=true): /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/hooks/hooks.json
+2026-10-11T12:49:13.134Z [DEBUG] Read hooks.json for plugin fresheye-accept-driver (enabled=true): /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/acceptance/driver/hooks/hooks.json
+2026-10-11T12:49:13.136Z [DEBUG] Loaded inline plugin from path: cyclops-fresheye
+2026-10-11T12:49:13.201Z [DEBUG] Checking plugin cyclops-fresheye: skillsPath=none, skillsPaths=0 paths
+2026-10-11T12:49:13.510Z [DEBUG] hooks module cyclops-fresheye@inline loaded (worker, environment 1, tier user); events: session.start,command.run,session.append,prompt.context,prompt.section,prompt.attachment,session.end,ui.render
+2026-10-11T12:49:13.578Z [DEBUG] engine.create: no plugin-provided interfaces; $ built for cyclops-fresheye,fresheye-accept-driver,cc-plugin-agents-md,cc-plugin-telemetry,cc-plugin-diff
+2026-10-11T12:49:13.579Z [DEBUG] plugin.register: cyclops-fresheye (user, cyclops-fresheye@inline), judged by core alone: admitted
+2026-10-11T12:49:13.589Z [DEBUG] plugin-dir watch: watching cyclops-fresheye, fresheye-accept-driver; folders of plugins none
+2026-10-11T12:49:14.129Z [DEBUG] plugin-dir watch: watching cyclops-fresheye, fresheye-accept-driver; folders of plugins none
+2026-10-11T12:49:14.223Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 204.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:14.223Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 196.3ms (worker hop, next() included) key=session-mode
+2026-10-11T12:49:14.588Z [DEBUG] hooks module cyclops-fresheye@inline prompt.context settled in 216.5ms (worker hop, next() included)
+2026-10-11T12:49:14.624Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 17.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:14.736Z [DEBUG] type root of cyclops-fresheye at /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/.claude-plugin/types: entries claude-code, claude-code-tools, claude-code-mcp; wrote nothing
+2026-10-11T12:49:14.738Z [DEBUG] type root of fresheye-accept-driver at /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/acceptance/driver/.claude-plugin/types: entries claude-code, claude-code-tools, claude-code-mcp; wrote nothing
+2026-10-11T12:49:14.836Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 9.9ms (worker hop, next() included)
+2026-10-11T12:49:14.842Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 5.5ms (worker hop, next() included)
+2026-10-11T12:49:14.906Z [DEBUG] $.command.register (cyclops-fresheye): /fresheye listed
+2026-10-11T12:49:14.925Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye session.start {"ms":76,"pairs":0,"active":false,"mode":"toggle","timeoutMs":60000}
+2026-10-11T12:49:14.925Z [DEBUG] hooks module cyclops-fresheye@inline, fresheye-accept-driver@inline session.start settled in 183.0ms (worker hop, next() included)
+2026-10-11T12:49:14.959Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.2ms (worker hop, next() included)
+2026-10-11T12:49:15.083Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 61.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:15.083Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 32.0ms (worker hop, next() included)
+2026-10-11T12:49:15.095Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 10.9ms (worker hop, next() included)
+2026-10-11T12:49:15.122Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 26.4ms (worker hop, next() included)
+2026-10-11T12:49:15.135Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 11.5ms (worker hop, next() included)
+2026-10-11T12:49:15.146Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 10.6ms (worker hop, next() included)
+2026-10-11T12:49:15.217Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 47.3ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.8ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.9ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.8ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.8ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.7ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.7ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.5ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.5ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.1ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 51.0ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.9ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.9ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.8ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.8ms (worker hop, next() included)
+2026-10-11T12:49:15.222Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.7ms (worker hop, next() included)
+2026-10-11T12:49:15.223Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.7ms (worker hop, next() included)
+2026-10-11T12:49:15.223Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.6ms (worker hop, next() included)
+2026-10-11T12:49:15.223Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.5ms (worker hop, next() included)
+2026-10-11T12:49:15.223Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 50.5ms (worker hop, next() included)
+2026-10-11T12:49:15.226Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 53.7ms (worker hop, next() included)
+2026-10-11T12:49:15.226Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 53.8ms (worker hop, next() included)
+2026-10-11T12:49:15.227Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 39.4ms (worker hop, next() included)
+2026-10-11T12:49:15.251Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.1ms (worker hop, next() included)
+2026-10-11T12:49:15.259Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 4.5ms (worker hop, next() included)
+2026-10-11T12:49:15.268Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 4.2ms (worker hop, next() included)
+2026-10-11T12:49:15.273Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.0ms (worker hop, next() included)
+2026-10-11T12:49:15.283Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 3.1ms (worker hop, next() included)
+2026-10-11T12:49:15.318Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 23.5ms (worker hop, next() included)
+2026-10-11T12:49:15.318Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 23.4ms (worker hop, next() included)
+2026-10-11T12:49:15.318Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 23.2ms (worker hop, next() included)
+2026-10-11T12:49:15.322Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 25.1ms (worker hop, next() included)
+2026-10-11T12:49:15.322Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 24.9ms (worker hop, next() included)
+2026-10-11T12:49:15.322Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 24.6ms (worker hop, next() included)
+2026-10-11T12:49:15.322Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 30.1ms (worker hop, next() included)
+2026-10-11T12:49:15.323Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 27.2ms (worker hop, next() included)
+2026-10-11T12:49:15.323Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 26.9ms (worker hop, next() included)
+2026-10-11T12:49:18.420Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.9ms (worker hop, next() included)
+2026-10-11T12:49:18.575Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.7ms (worker hop, next() included)
+2026-10-11T12:49:18.623Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 7.8ms (worker hop, next() included)
+2026-10-11T12:49:18.658Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 13.9ms (worker hop, next() included)
+2026-10-11T12:49:18.711Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 15.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.162Z [DEBUG] hooks module cyclops-fresheye@inline: command.run nested in fresheye-accept-driver
+2026-10-11T12:49:19.172Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 24.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.172Z [DEBUG] cyclops-fresheye (user) answered command.run without next() in 6.3ms; nothing beneath it ran for this dispatch
+2026-10-11T12:49:19.172Z [DEBUG] hooks module cyclops-fresheye@inline command.run settled in 10.2ms (worker hop, next() included)
+2026-10-11T12:49:19.193Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 13.1ms (worker hop, next() included)
+2026-10-11T12:49:19.202Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 8.1ms (worker hop, next() included)
+2026-10-11T12:49:19.242Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 38.9ms (worker hop, next() included)
+2026-10-11T12:49:19.278Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 12.0ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.280Z [DEBUG] $.store.set (cyclops-fresheye@inline): pending
+2026-10-11T12:49:19.283Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye open.begin {"startId":"27662d61-2ac7-4d5a-9769-f8436dba4658","originId":"27662d61-2ac7-4d5a-9769-f8436dba4658"}
+2026-10-11T12:49:19.283Z [DEBUG] $.command.run (cyclops-fresheye): 6 chars queued
+2026-10-11T12:49:19.322Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:19.322Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:19.322Z [DEBUG] hooks module cc-plugin-agents-md@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:19.323Z [DEBUG] hooks module cc-plugin-diff@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:19.335Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 21.8ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.452Z [DEBUG] hooks module cyclops-fresheye@inline session.end settled in 125.2ms (worker hop, next() included)
+2026-10-11T12:49:19.522Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 40.5ms (worker hop, next() included)
+2026-10-11T12:49:19.542Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 19.3ms (worker hop, next() included)
+2026-10-11T12:49:19.554Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 11.8ms (worker hop, next() included)
+2026-10-11T12:49:19.583Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 26.0ms (worker hop, next() included)
+2026-10-11T12:49:19.584Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 11.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.595Z [DEBUG] $.store.set (cyclops-fresheye@inline): pairs
+2026-10-11T12:49:19.597Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 13.6ms (worker hop, next() included)
+2026-10-11T12:49:19.612Z [DEBUG] $.prompt.submit (cyclops-fresheye): "FRESHONLY-K7Q2 is this review tag. Without using tools, list every token in your context that contains CANARY or FRESHONLY, one per line, or reply NONE."
+2026-10-11T12:49:19.656Z [DEBUG] hooks module cc-plugin-agents-md@builtin (native): prompt.submit nested in cyclops-fresheye
+2026-10-11T12:49:19.657Z [DEBUG] hooks module cc-plugin-diff@builtin (native): prompt.submit nested in cyclops-fresheye
+2026-10-11T12:49:19.660Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 49.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.660Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 49.0ms (worker hop, next() included) key=session-mode
+2026-10-11T12:49:19.670Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 23.5ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.713Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 15.0ms (worker hop, next() included)
+2026-10-11T12:49:19.736Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 21.5ms (worker hop, next() included)
+2026-10-11T12:49:19.743Z [DEBUG] Checking plugin cyclops-fresheye: skillsPath=none, skillsPaths=0 paths
+2026-10-11T12:49:19.776Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye open.done {"originId":"27662d61-2ac7-4d5a-9769-f8436dba4658","freshId":"a0e4a8b2-f070-4251-969b-2b92229aa3fd","ms":526}
+2026-10-11T12:49:19.777Z [DEBUG] $.ui.toast (cyclops-fresheye): FreshEye opened · original 27662d61 kept
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.0ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.8ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.7ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.5ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.3ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.2ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.2ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.9ms (worker hop, next() included)
+2026-10-11T12:49:19.784Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.8ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.8ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.6ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.5ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.3ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.1ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 12.0ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 11.9ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 11.7ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 11.6ms (worker hop, next() included)
+2026-10-11T12:49:19.785Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 11.5ms (worker hop, next() included)
+2026-10-11T12:49:19.786Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 11.3ms (worker hop, next() included)
+2026-10-11T12:49:19.786Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 11.1ms (worker hop, next() included)
+2026-10-11T12:49:19.786Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 10.9ms (worker hop, next() included)
+2026-10-11T12:49:19.796Z [DEBUG] cyclops-fresheye (user) answered prompt.section without next() in 6.4ms; nothing beneath it ran for this dispatch
+2026-10-11T12:49:19.796Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 8.9ms (worker hop, next() included)
+2026-10-11T12:49:19.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.context settled in 27.6ms (worker hop, next() included)
+2026-10-11T12:49:19.863Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 8.3ms (worker hop, next() included)
+2026-10-11T12:49:19.867Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 7.5ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:19.868Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.3ms (worker hop, next() included)
+2026-10-11T12:49:19.873Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 1.9ms (worker hop, next() included)
+2026-10-11T12:49:19.896Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 18.5ms (worker hop, next() included)
+2026-10-11T12:49:19.946Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 4.1ms (worker hop, next() included)
+2026-10-11T12:49:19.946Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 3.3ms (worker hop, next() included)
+2026-10-11T12:49:19.946Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 2.5ms (worker hop, next() included)
+2026-10-11T12:49:19.949Z [DEBUG] cyclops-fresheye (user) answered prompt.attachment without next() in 9.0ms; nothing beneath it ran for this dispatch
+2026-10-11T12:49:19.950Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 11.5ms (worker hop, next() included)
+2026-10-11T12:49:19.950Z [DEBUG] prompt.attachment hook_additional_context: cyclops-fresheye (user) left it out (97 characters)
+2026-10-11T12:49:19.950Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 10.3ms (worker hop, next() included)
+2026-10-11T12:49:19.950Z [DEBUG] prompt.attachment hook_additional_context: cyclops-fresheye (user) left it out (106 characters)
+2026-10-11T12:49:21.181Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 6.6ms (worker hop, next() included)
+2026-10-11T12:49:21.342Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.3ms (worker hop, next() included)
+2026-10-11T12:49:21.371Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 4.4ms (worker hop, next() included)
+2026-10-11T12:49:21.385Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 4.9ms (worker hop, next() included)
+2026-10-11T12:49:21.423Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 14.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:21.837Z [DEBUG] hooks module cyclops-fresheye@inline: command.run nested in fresheye-accept-driver
+2026-10-11T12:49:21.840Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 13.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:21.841Z [DEBUG] hooks module cyclops-fresheye@inline command.run settled in 3.1ms (worker hop, next() included)
+2026-10-11T12:49:21.863Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 17.5ms (worker hop, next() included)
+2026-10-11T12:49:21.878Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 14.1ms (worker hop, next() included)
+2026-10-11T12:49:21.909Z [DEBUG] $.command.run (cyclops-fresheye): 44 chars queued
+2026-10-11T12:49:21.979Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:21.979Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:21.980Z [DEBUG] hooks module cc-plugin-agents-md@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:21.980Z [DEBUG] hooks module cc-plugin-diff@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:21.988Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 91.2ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:21.992Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 21.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:22.026Z [DEBUG] hooks module cyclops-fresheye@inline session.end settled in 2.8ms (worker hop, next() included)
+2026-10-11T12:49:22.101Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 15.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:22.108Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye switch.done {"from":"a0e4a8b2-f070-4251-969b-2b92229aa3fd","to":"27662d61-2ac7-4d5a-9769-f8436dba4658","direction":"return","ms":195}
+2026-10-11T12:49:22.108Z [DEBUG] $.ui.toast (cyclops-fresheye): Original context restored · 27662d61
+2026-10-11T12:49:22.110Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 3.9ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:22.111Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 4.1ms (worker hop, next() included) key=session-mode
+2026-10-11T12:49:22.234Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 20.4ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:22.257Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 4.6ms (worker hop, next() included)
+2026-10-11T12:49:22.274Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 16.5ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.0ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.9ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.9ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.8ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.6ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.6ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.5ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.4ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.3ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.4ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.4ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.3ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.3ms (worker hop, next() included)
+2026-10-11T12:49:22.301Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.1ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.0ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 20.0ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 19.9ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 19.9ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 19.8ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 19.8ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 19.7ms (worker hop, next() included)
+2026-10-11T12:49:22.302Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 19.7ms (worker hop, next() included)
+2026-10-11T12:49:22.308Z [DEBUG] hooks module cyclops-fresheye@inline prompt.context settled in 29.8ms (worker hop, next() included)
+2026-10-11T12:49:22.309Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 10.4ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 11.4ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 11.2ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 11.0ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 9.5ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 9.2ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 8.8ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 12.7ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 11.0ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 10.2ms (worker hop, next() included)
+2026-10-11T12:49:22.332Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 8.6ms (worker hop, next() included)
+2026-10-11T12:49:22.373Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 10.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:23.661Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 3.2ms (worker hop, next() included)
+2026-10-11T12:49:23.935Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 10.3ms (worker hop, next() included)
+2026-10-11T12:49:23.963Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 6.0ms (worker hop, next() included)
+2026-10-11T12:49:24.004Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 17.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:24.404Z [DEBUG] hooks module cyclops-fresheye@inline: command.run nested in fresheye-accept-driver
+2026-10-11T12:49:24.407Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 12.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:24.407Z [DEBUG] hooks module cyclops-fresheye@inline command.run settled in 3.7ms (worker hop, next() included)
+2026-10-11T12:49:24.426Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 14.2ms (worker hop, next() included)
+2026-10-11T12:49:24.438Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 11.3ms (worker hop, next() included)
+2026-10-11T12:49:24.465Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 9.6ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:24.470Z [DEBUG] $.command.run (cyclops-fresheye): 44 chars queued
+2026-10-11T12:49:24.507Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:24.507Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:24.508Z [DEBUG] hooks module cc-plugin-agents-md@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:24.508Z [DEBUG] hooks module cc-plugin-diff@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:24.518Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 18.6ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:24.548Z [DEBUG] hooks module cyclops-fresheye@inline session.end settled in 4.1ms (worker hop, next() included)
+2026-10-11T12:49:24.584Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye switch.done {"from":"27662d61-2ac7-4d5a-9769-f8436dba4658","to":"a0e4a8b2-f070-4251-969b-2b92229aa3fd","direction":"enter","ms":115}
+2026-10-11T12:49:24.585Z [DEBUG] $.ui.toast (cyclops-fresheye): ◎ FreshEye · Fresh Context · a0e4a8b2
+2026-10-11T12:49:24.645Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 23.4ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:24.646Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 19.7ms (worker hop, next() included) key=session-mode
+2026-10-11T12:49:24.761Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 24.1ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:24.790Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 5.4ms (worker hop, next() included)
+2026-10-11T12:49:24.795Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 4.1ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.6ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.4ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.5ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.4ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.2ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.1ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.0ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.8ms (worker hop, next() included)
+2026-10-11T12:49:24.818Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.7ms (worker hop, next() included)
+2026-10-11T12:49:24.819Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.5ms (worker hop, next() included)
+2026-10-11T12:49:24.819Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 9.5ms (worker hop, next() included)
+2026-10-11T12:49:24.819Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 8.5ms (worker hop, next() included)
+2026-10-11T12:49:24.819Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 8.3ms (worker hop, next() included)
+2026-10-11T12:49:24.825Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.9ms (worker hop, next() included)
+2026-10-11T12:49:24.825Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.2ms (worker hop, next() included)
+2026-10-11T12:49:24.825Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.0ms (worker hop, next() included)
+2026-10-11T12:49:24.825Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.8ms (worker hop, next() included)
+2026-10-11T12:49:24.825Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.7ms (worker hop, next() included)
+2026-10-11T12:49:24.826Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.2ms (worker hop, next() included)
+2026-10-11T12:49:24.826Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.1ms (worker hop, next() included)
+2026-10-11T12:49:24.826Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 14.1ms (worker hop, next() included)
+2026-10-11T12:49:24.826Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 13.9ms (worker hop, next() included)
+2026-10-11T12:49:24.826Z [DEBUG] hooks module cyclops-fresheye@inline prompt.context settled in 27.0ms (worker hop, next() included)
+2026-10-11T12:49:24.830Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 9.6ms (worker hop, next() included)
+2026-10-11T12:49:24.856Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 15.4ms (worker hop, next() included)
+2026-10-11T12:49:24.856Z [DEBUG] prompt.attachment hook_additional_context: cyclops-fresheye (user) left it out (97 characters)
+2026-10-11T12:49:24.856Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 15.2ms (worker hop, next() included)
+2026-10-11T12:49:24.856Z [DEBUG] prompt.attachment hook_additional_context: cyclops-fresheye (user) left it out (106 characters)
+2026-10-11T12:49:24.856Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 15.0ms (worker hop, next() included)
+2026-10-11T12:49:24.856Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 14.8ms (worker hop, next() included)
+2026-10-11T12:49:24.856Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 14.6ms (worker hop, next() included)
+2026-10-11T12:49:24.860Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 18.4ms (worker hop, next() included)
+2026-10-11T12:49:24.860Z [DEBUG] prompt.attachment hook_additional_context: cyclops-fresheye (user) left it out (106 characters)
+2026-10-11T12:49:24.889Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 4.7ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:25.679Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.9ms (worker hop, next() included)
+2026-10-11T12:49:25.901Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.8ms (worker hop, next() included)
+2026-10-11T12:49:25.993Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 29.5ms (worker hop, next() included)
+2026-10-11T12:49:25.995Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 10.9ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:26.388Z [DEBUG] hooks module cyclops-fresheye@inline: command.run nested in fresheye-accept-driver
+2026-10-11T12:49:26.390Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 11.1ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:26.391Z [DEBUG] hooks module cyclops-fresheye@inline command.run settled in 3.4ms (worker hop, next() included)
+2026-10-11T12:49:26.407Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 10.1ms (worker hop, next() included)
+2026-10-11T12:49:26.418Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 10.0ms (worker hop, next() included)
+2026-10-11T12:49:26.429Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 11.3ms (worker hop, next() included)
+2026-10-11T12:49:26.460Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 12.9ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:26.462Z [DEBUG] $.store.set (cyclops-fresheye@inline): pending
+2026-10-11T12:49:26.467Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye open.begin {"startId":"a0e4a8b2-f070-4251-969b-2b92229aa3fd","originId":"27662d61-2ac7-4d5a-9769-f8436dba4658"}
+2026-10-11T12:49:26.467Z [DEBUG] $.command.run (cyclops-fresheye): 6 chars queued
+2026-10-11T12:49:26.502Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:26.502Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:26.502Z [DEBUG] hooks module cc-plugin-agents-md@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:26.503Z [DEBUG] hooks module cc-plugin-diff@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:26.507Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 12.8ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:26.510Z [DEBUG] hooks module cyclops-fresheye@inline session.end settled in 5.7ms (worker hop, next() included)
+2026-10-11T12:49:26.556Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 29.9ms (worker hop, next() included)
+2026-10-11T12:49:26.569Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 12.3ms (worker hop, next() included)
+2026-10-11T12:49:26.581Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 10.8ms (worker hop, next() included)
+2026-10-11T12:49:26.587Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 3.8ms (worker hop, next() included)
+2026-10-11T12:49:26.609Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 21.2ms (worker hop, next() included)
+2026-10-11T12:49:26.609Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 8.4ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:26.620Z [DEBUG] $.store.set (cyclops-fresheye@inline): pairs
+2026-10-11T12:49:26.635Z [DEBUG] $.prompt.submit (cyclops-fresheye): "FRESHONLY-R4M8 is this review tag. Without using tools, list every token in your context that contains CANARY or FRESHONLY, one per line, or reply NONE."
+2026-10-11T12:49:26.671Z [DEBUG] hooks module cc-plugin-agents-md@builtin (native): prompt.submit nested in cyclops-fresheye
+2026-10-11T12:49:26.671Z [DEBUG] hooks module cc-plugin-diff@builtin (native): prompt.submit nested in cyclops-fresheye
+2026-10-11T12:49:26.680Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 17.5ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:26.711Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 16.3ms (worker hop, next() included)
+2026-10-11T12:49:26.723Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 11.7ms (worker hop, next() included)
+2026-10-11T12:49:26.728Z [DEBUG] Checking plugin cyclops-fresheye: skillsPath=none, skillsPaths=0 paths
+2026-10-11T12:49:26.732Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye open.done {"originId":"27662d61-2ac7-4d5a-9769-f8436dba4658","freshId":"4d73429e-7a77-4d42-a4c3-584edfb23f50","ms":303}
+2026-10-11T12:49:26.732Z [DEBUG] $.ui.toast (cyclops-fresheye): FreshEye opened · original 27662d61 kept
+2026-10-11T12:49:26.766Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.4ms (worker hop, next() included)
+2026-10-11T12:49:26.766Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.2ms (worker hop, next() included)
+2026-10-11T12:49:26.766Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.2ms (worker hop, next() included)
+2026-10-11T12:49:26.766Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.2ms (worker hop, next() included)
+2026-10-11T12:49:26.766Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.1ms (worker hop, next() included)
+2026-10-11T12:49:26.766Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.1ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 22.2ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 22.1ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 22.1ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.9ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.9ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.8ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.8ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.7ms (worker hop, next() included)
+2026-10-11T12:49:26.767Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.7ms (worker hop, next() included)
+2026-10-11T12:49:26.768Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.7ms (worker hop, next() included)
+2026-10-11T12:49:26.768Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.6ms (worker hop, next() included)
+2026-10-11T12:49:26.768Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.5ms (worker hop, next() included)
+2026-10-11T12:49:26.768Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.4ms (worker hop, next() included)
+2026-10-11T12:49:26.768Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.4ms (worker hop, next() included)
+2026-10-11T12:49:26.768Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 21.3ms (worker hop, next() included)
+2026-10-11T12:49:26.772Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 25.6ms (worker hop, next() included)
+2026-10-11T12:49:26.772Z [DEBUG] hooks module cyclops-fresheye@inline prompt.section settled in 22.9ms (worker hop, next() included)
+2026-10-11T12:49:26.773Z [DEBUG] hooks module cyclops-fresheye@inline prompt.context settled in 21.7ms (worker hop, next() included)
+2026-10-11T12:49:26.797Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 3.0ms (worker hop, next() included)
+2026-10-11T12:49:26.802Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.0ms (worker hop, next() included)
+2026-10-11T12:49:26.807Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 2.1ms (worker hop, next() included)
+2026-10-11T12:49:26.812Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 1.5ms (worker hop, next() included)
+2026-10-11T12:49:26.835Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 14.5ms (worker hop, next() included)
+2026-10-11T12:49:26.835Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 17.0ms (worker hop, next() included)
+2026-10-11T12:49:26.835Z [DEBUG] prompt.attachment hook_additional_context: cyclops-fresheye (user) left it out (97 characters)
+2026-10-11T12:49:26.835Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 15.9ms (worker hop, next() included)
+2026-10-11T12:49:26.835Z [DEBUG] prompt.attachment hook_additional_context: cyclops-fresheye (user) left it out (106 characters)
+2026-10-11T12:49:26.835Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 14.3ms (worker hop, next() included)
+2026-10-11T12:49:26.835Z [DEBUG] hooks module cyclops-fresheye@inline prompt.attachment settled in 14.1ms (worker hop, next() included)
+2026-10-11T12:49:27.976Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 16.0ms (worker hop, next() included)
+2026-10-11T12:49:28.125Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 3.1ms (worker hop, next() included)
+2026-10-11T12:49:28.157Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 6.9ms (worker hop, next() included)
+2026-10-11T12:49:28.174Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 6.3ms (worker hop, next() included)
+2026-10-11T12:49:28.215Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 15.6ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:28.610Z [DEBUG] hooks module cyclops-fresheye@inline: command.run nested in fresheye-accept-driver
+2026-10-11T12:49:28.613Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 13.6ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:28.613Z [DEBUG] hooks module cyclops-fresheye@inline command.run settled in 3.1ms (worker hop, next() included)
+2026-10-11T12:49:28.633Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 12.6ms (worker hop, next() included)
+2026-10-11T12:49:28.642Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 8.5ms (worker hop, next() included)
+2026-10-11T12:49:28.674Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 15.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:28.687Z [DEBUG] $.command.run (cyclops-fresheye): 44 chars queued
+2026-10-11T12:49:28.724Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:28.724Z [DEBUG] hooks module cyclops-fresheye@inline command.run skipped: re-entry (the plugin's own code raised it; origin cyclops-fresheye)
+2026-10-11T12:49:28.725Z [DEBUG] hooks module cc-plugin-agents-md@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:28.725Z [DEBUG] hooks module cc-plugin-diff@builtin (native): command.run nested in cyclops-fresheye
+2026-10-11T12:49:28.738Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 23.3ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:28.767Z [DEBUG] hooks module cyclops-fresheye@inline session.end settled in 5.3ms (worker hop, next() included)
+2026-10-11T12:49:28.833Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye switch.done {"from":"4d73429e-7a77-4d42-a4c3-584edfb23f50","to":"27662d61-2ac7-4d5a-9769-f8436dba4658","direction":"return","ms":155}
+2026-10-11T12:49:28.833Z [DEBUG] $.ui.toast (cyclops-fresheye): Original context restored · 27662d61
+2026-10-11T12:49:28.875Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 16.4ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:28.875Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 15.8ms (worker hop, next() included) key=session-mode
+2026-10-11T12:49:29.039Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 1.8ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:49:29.171Z [DEBUG] cyclops-fresheye (user) answered command.run without next() 4 more times in the last 10s (the last in 1.9ms)
+2026-10-11T12:49:29.798Z [DEBUG] cyclops-fresheye (user) answered prompt.section without next() 2 more times in the last 10s (the last in 8.3ms)
+2026-10-11T12:49:29.948Z [DEBUG] cyclops-fresheye (user) answered prompt.attachment without next() 6 more times in the last 10s (the last in 7.3ms)
+2026-10-11T12:49:35.777Z [DEBUG] hooks module cyclops-fresheye@inline session.end settled in 3.0ms (worker hop, next() included)

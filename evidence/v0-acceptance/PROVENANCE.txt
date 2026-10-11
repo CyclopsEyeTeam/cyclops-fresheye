@@ -1,0 +1,1 @@
+Suite ran on commit 0708858 with Claude Code 2.1.296 (Claude Code), model claude-haiku-5-5, 2026-10-11T12:50:56Z. Sandbox: disposable HOME + CLAUDE_CONFIG_DIR + git repo; mods loaded with --plugin-dir only.

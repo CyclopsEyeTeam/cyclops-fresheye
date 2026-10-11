@@ -1,0 +1,22 @@
+{
+  "pairs": {
+    "a0e4a8b2-f070-4251-969b-2b92229aa3fd": {
+      "originId": "27662d61-2ac7-4d5a-9769-f8436dba4658",
+      "originRoot": "/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-final2/repo",
+      "model": "claude-haiku-5-5",
+      "createdAt": 1791722959224
+    },
+    "4d73429e-7a77-4d42-a4c3-584edfb23f50": {
+      "originId": "27662d61-2ac7-4d5a-9769-f8436dba4658",
+      "originRoot": "/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-final2/repo",
+      "model": "claude-haiku-5-5",
+      "createdAt": 1791722966428
+    },
+    "1992b0fb-6648-4fb5-8e77-c9159801367f": {
+      "originId": "42703bd4-3936-41e8-8b51-bb6eae931b45",
+      "originRoot": "/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-final2/repo",
+      "model": "claude-haiku-5-5",
+      "createdAt": 1791722980007
+    }
+  }
+}

@@ -1,0 +1,35 @@
+2026-10-11T12:50:23.618Z [DEBUG] --plugin-dir /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/acceptance/driver is one plugin: .claude-plugin at its top marks it
+2026-10-11T12:50:23.619Z [DEBUG] --plugin-dir /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye is one plugin: .claude-plugin at its top marks it
+2026-10-11T12:50:23.662Z [DEBUG] Read hooks.json for plugin fresheye-accept-driver (enabled=true): /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/acceptance/driver/hooks/hooks.json
+2026-10-11T12:50:23.663Z [DEBUG] Read hooks.json for plugin cyclops-fresheye (enabled=true): /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/hooks/hooks.json
+2026-10-11T12:50:23.702Z [DEBUG] Loaded inline plugin from path: cyclops-fresheye
+2026-10-11T12:50:23.706Z [DEBUG] Checking plugin cyclops-fresheye: skillsPath=none, skillsPaths=0 paths
+2026-10-11T12:50:23.868Z [DEBUG] Checking plugin cyclops-fresheye: skillsPath=none, skillsPaths=0 paths
+2026-10-11T12:50:24.165Z [DEBUG] hooks module cyclops-fresheye@inline loaded (worker, environment 1, tier user); events: session.start,command.run,session.append,prompt.context,prompt.section,prompt.attachment,session.end,ui.render
+2026-10-11T12:50:24.251Z [DEBUG] engine.create: no plugin-provided interfaces; $ built for cyclops-fresheye,fresheye-accept-driver,cc-plugin-agents-md,cc-plugin-telemetry,cc-plugin-diff
+2026-10-11T12:50:24.253Z [DEBUG] plugin.register: cyclops-fresheye (user, cyclops-fresheye@inline), judged by core alone: admitted
+2026-10-11T12:50:24.265Z [DEBUG] plugin-dir watch: watching cyclops-fresheye, fresheye-accept-driver; folders of plugins none
+2026-10-11T12:50:24.811Z [DEBUG] plugin-dir watch: watching cyclops-fresheye, fresheye-accept-driver; folders of plugins none
+2026-10-11T12:50:24.925Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 220.5ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:50:24.926Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 215.5ms (worker hop, next() included) key=session-mode
+2026-10-11T12:50:25.314Z [DEBUG] hooks module cyclops-fresheye@inline prompt.context settled in 181.6ms (worker hop, next() included)
+2026-10-11T12:50:25.344Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 19.9ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:50:25.393Z [DEBUG] type root of cyclops-fresheye at /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/.claude-plugin/types: entries claude-code, claude-code-tools, claude-code-mcp; wrote nothing
+2026-10-11T12:50:25.393Z [DEBUG] type root of fresheye-accept-driver at /tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/cyclops-fresheye/acceptance/driver/.claude-plugin/types: entries claude-code, claude-code-tools, claude-code-mcp; wrote nothing
+2026-10-11T12:50:25.480Z [DEBUG] $.command.register (cyclops-fresheye): /fresheye listed
+2026-10-11T12:50:25.499Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye session.start {"ms":14,"pairs":3,"active":true,"mode":"toggle","timeoutMs":60000}
+2026-10-11T12:50:25.500Z [DEBUG] hooks module cyclops-fresheye@inline, fresheye-accept-driver@inline session.start settled in 103.2ms (worker hop, next() included)
+2026-10-11T12:50:25.507Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 10.8ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:50:25.510Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 13.0ms (worker hop, next() included) key=session-mode
+2026-10-11T12:50:25.695Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 4.0ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:50:28.645Z [DEBUG] hooks module cyclops-fresheye@inline: command.run nested in fresheye-accept-driver
+2026-10-11T12:50:28.651Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 28.0ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:50:28.652Z [DEBUG] cyclops-fresheye (user) answered command.run without next() in 5.9ms; nothing beneath it ran for this dispatch
+2026-10-11T12:50:28.653Z [DEBUG] hooks module cyclops-fresheye@inline command.run settled in 7.3ms (worker hop, next() included)
+2026-10-11T12:50:28.695Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 27.9ms (worker hop, next() included)
+2026-10-11T12:50:28.702Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 6.7ms (worker hop, next() included)
+2026-10-11T12:50:28.772Z [DEBUG] hooks module cyclops-fresheye@inline ui.render settled in 23.9ms (worker hop, next() included) key=above-prompt
+2026-10-11T12:50:28.782Z [DEBUG] [cyclops-fresheye] $.ui.log (to debug): cyclops-fresheye stale {"here":"4d73429e-7a77-4d42-a4c3-584edfb23f50","target":{"direction":"return","targetId":"27662d61-2ac7-4d5a-9769-f8436dba4658","root":"/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-final2/repo"}}
+2026-10-11T12:50:28.782Z [DEBUG] [cyclops-fresheye] $.ui.log: FreshEye: the original conversation 27662d61 can’t be found any more. Nothing was switched or deleted; use /resume to choose one yourself.
+2026-10-11T12:50:28.797Z [DEBUG] hooks module cyclops-fresheye@inline session.append settled in 10.6ms (worker hop, next() included)
+2026-10-11T12:50:36.498Z [DEBUG] hooks module cyclops-fresheye@inline session.end settled in 23.7ms (worker hop, next() included)

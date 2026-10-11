@@ -1,0 +1,34 @@
+
+tests/core.test.ts:
+(pass) parsePrompt strips one pair of wrapping quotes and keeps inner text [5.61ms]
+(pass) modes and timeouts fall back to safe defaults [1.83ms]
+(pass) projectDirName matches the verified transcript folder naming [0.69ms]
+(pass) pickTarget never guesses [2.72ms]
+(pass) a FreshEye opened from a FreshEye links to the true original [1.67ms]
+(pass) pairs table is bounded and keeps the newest [36.30ms]
+(pass) withholding rules: hook context and memory/instruction attachments only [2.95ms]
+
+tests/mod.test.ts:
+(pass) registers /fresheye at session start [125.34ms]
+(pass) open: clears first, then sends the prompt only to the new conversation [71.70ms]
+(pass) open: if /clear fails the prompt is not sent anywhere [64.21ms]
+(pass) open: refused without an interactive surface, nothing sent [50.54ms]
+(pass) bare /fresheye with no pair never guesses [46.65ms]
+(pass) ask (default): band shows both conversations; Stay keeps you here [68.30ms]
+(pass) ask (default): Switch resumes exactly the recorded original [63.52ms]
+(pass) ask (default): no answer before the timeout means stay [58.42ms]
+(pass) ask: no drawable surface means stay [49.56ms]
+(pass) a prompt while a switch question is open is refused, not sent [54.11ms]
+(pass) toggle: switches at once [50.12ms]
+(pass) off: never switches [151.07ms]
+(pass) stale reference: missing original is reported, nothing switched or deleted [53.57ms]
+(pass) restart: an interrupted open is reported once and cleared [58.20ms]
+(pass) indicator: the footer shows the FreshEye mode only inside a FreshEye conversation [52.89ms]
+(pass) indicator: absent in the original conversation [61.90ms]
+(pass) race: a second /fresheye before the first settles is refused (one /clear, one prompt) [62.08ms]
+(pass) store failure after /clear: prompt not sent, way back named [66.13ms]
+(pass) a timeout only closes its own question [84.69ms]
+
+ 26 pass
+ 0 fail
+Ran 26 tests across 2 files. [1.62s]

@@ -1,0 +1,203 @@
+{
+ "sandbox": "/tmp/claude-0/-home-claude/cbbde8fa-7760-5346-8b22-6e2c8aa4a85a/scratchpad/accept-final2",
+ "facts": {
+  "S1": {
+   "origin": "27662d61-2ac7-4d5a-9769-f8436dba4658",
+   "fresh1": "a0e4a8b2-f070-4251-969b-2b92229aa3fd",
+   "fresh2": "4d73429e-7a77-4d42-a4c3-584edfb23f50"
+  },
+  "S2": {
+   "origin": "42703bd4-3936-41e8-8b51-bb6eae931b45",
+   "fresh": "1992b0fb-6648-4fb5-8e77-c9159801367f"
+  }
+ },
+ "gates": {
+  "G1 fresh context created (new id, same model)": {
+   "pass": true,
+   "detail": {
+    "origin": "27662d61-2ac7-4d5a-9769-f8436dba4658",
+    "fresh1": "a0e4a8b2-f070-4251-969b-2b92229aa3fd",
+    "fresh2": "4d73429e-7a77-4d42-a4c3-584edfb23f50",
+    "models": [
+     "claude-haiku-5-5"
+    ]
+   }
+  },
+  "G2 prompt delivered only to FreshEye": {
+   "pass": true,
+   "detail": {
+    "freshAnswer": "FRESHONLY-K7Q2"
+   }
+  },
+  "G3 CLAUDE.md excluded from FreshEye": {
+   "pass": true,
+   "detail": {
+    "freshApiCanaries": [
+     [],
+     [],
+     []
+    ]
+   }
+  },
+  "G4 auto-memory excluded from FreshEye": {
+   "pass": true,
+   "detail": {}
+  },
+  "G5 Remember-hook context excluded from FreshEye": {
+   "pass": true,
+   "detail": {
+    "freshAnswers": [
+     "FRESHONLY-K7Q2",
+     "FRESHONLY-K7Q2",
+     "FRESHONLY-R4M8"
+    ]
+   }
+  },
+  "G6 original restored with its full context": {
+   "pass": true,
+   "detail": {
+    "transcriptChain": [
+     {
+      "tag": "origin-before",
+      "bytes": 45838,
+      "prefixOfFinal": true
+     },
+     {
+      "tag": "origin-back",
+      "bytes": 49985,
+      "prefixOfFinal": true
+     },
+     {
+      "tag": "origin-after-turn",
+      "bytes": 57413,
+      "prefixOfFinal": true
+     },
+     {
+      "tag": "origin-final",
+      "bytes": 60568,
+      "prefixOfFinal": true
+     }
+    ],
+    "originAnswers": [
+     "ZEBRA-CANARY-41\nMAGENTA-CANARY-77\nWOMBAT-CANARY-93\nOTTER-CANARY-58",
+     "ZEBRA-CANARY-41\nMAGENTA-CANARY-77\nWOMBAT-CANARY-93\nOTTER-CANARY-58"
+    ]
+   }
+  },
+  "G7 FreshEye prompt never sent to the original": {
+   "pass": true,
+   "detail": {
+    "modelVisibleMarkersInOriginal": [],
+    "metadataOnly(not sent)": [
+     "FRESHONLY-K7Q2 (queue-operation)",
+     "FRESHONLY-K7Q2 (system/commandRun)"
+    ]
+   }
+  },
+  "G11 repeated switching returns to the true original": {
+   "pass": true,
+   "detail": {
+    "sequence": [
+     [
+      "a0e4a8b2",
+      "27662d61"
+     ],
+     [
+      "27662d61",
+      "a0e4a8b2"
+     ],
+     [
+      "4d73429e",
+      "27662d61"
+     ]
+    ]
+   }
+  },
+  "G8 ask: timeout/no answer stays; prompt during question refused": {
+   "pass": true,
+   "detail": {
+    "confirmEvents": [
+     "confirm.shown",
+     "confirm.timeout"
+    ],
+    "refusedText": "FreshEye: answer the switch question above the prompt first. Nothing was sent or switched."
+   }
+  },
+  "G2b typed /fresheye path delivers to FreshEye only": {
+   "pass": true,
+   "detail": {
+    "originMetadataOnly": [
+     "FRESHONLY-K7Q2 (system/commandRun)"
+    ]
+   }
+  },
+  "G9 restart: FreshEye stays fresh and returns to its recorded original": {
+   "pass": true,
+   "detail": {
+    "answerAfterRestart": "FRESHONLY-K7Q2",
+    "returnedTo": "42703bd4-3936-41e8-8b51-bb6eae931b45"
+   }
+  },
+  "G10 stale original: reported, nothing switched; FreshEye removed no transcript": {
+   "pass": true,
+   "detail": {
+    "debugEvents": [
+     "session.start",
+     "stale"
+    ]
+   }
+  },
+  "G15 non-interactive: refused, no model turn, nothing sent": {
+   "pass": true,
+   "detail": {
+    "result": "cyclops-fresheye: FreshEye needs an interactive session. Nothing was sent.",
+    "num_turns": 0
+   }
+  },
+  "G13 permission decisions identical in every conversation (no escalation; session-granted approvals not exercised)": {
+   "pass": true,
+   "detail": {
+    "decisions": {
+     "Bash(curl https://example.com)": "ask",
+     "Bash(git status)": "allow",
+     "Bash(rm -rf build)": "allow",
+     "Edit(/etc/hosts)": "ask",
+     "Edit(notes.txt)": "allow"
+    }
+   }
+  },
+  "G12 no transcript deleted": {
+   "pass": true,
+   "detail": {
+    "sessionsSeen": 5,
+    "missing": []
+   }
+  },
+  "G5b Remember hooks still RUN (side effects not disabled)": {
+   "pass": true,
+   "detail": {
+    "userPromptSubmitHookRuns": 7
+   }
+  }
+ },
+ "performance": {
+  "session.start ms": [
+   76,
+   30,
+   16,
+   14
+  ],
+  "open ms (clear\u2192prompt sent)": [
+   526,
+   303,
+   483
+  ],
+  "switch ms (/resume)": [
+   195,
+   115,
+   155,
+   292
+  ]
+ },
+ "allPass": true
+}
