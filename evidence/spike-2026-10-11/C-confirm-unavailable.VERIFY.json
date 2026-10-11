@@ -1,0 +1,67 @@
+{
+ "run": "C-confirm-unavailable",
+ "answers": [
+  {
+   "where": "fresh",
+   "session": "d7c9962e",
+   "canariesSeen": [],
+   "messageCount": 4,
+   "model": "claude-haiku-5-5"
+  }
+ ],
+ "check1_clear": [
+  {
+   "ok": true,
+   "origin": "cc3cc669",
+   "fresh": "d7c9962e",
+   "sameModel": "claude-haiku-5-5"
+  }
+ ],
+ "check1_resume": [],
+ "check2_context_fired_after_clear": true,
+ "drops_by_session": {
+  "d7c9962e": [
+   "CHECK2.prompt.context:claudeMd",
+   "CHECK3.prompt.section:memory",
+   "CHECK4.prompt.attachment:hook_additional_context"
+  ]
+ },
+ "settings_hooks_still_ran": [
+  [
+   "classic.SessionStart",
+   "clear"
+  ],
+  [
+   "classic.SessionStart",
+   "startup"
+  ],
+  [
+   "classic.UserPromptSubmit",
+   ""
+  ]
+ ],
+ "confirm_path": [
+  "toggle.asking",
+  "toggle.ask.rejected-no-switch",
+  "asktest.after30s",
+  "HooksError: fresheye-probe: $.tool.call: no tool named \"AskUserQuestion\" in this session"
+ ],
+ "noSwitchWithoutConfirm": true,
+ "transcripts_on_disk": [
+  "114f21b9-4628-4a74-a139-7c0434e2518e.jsonl",
+  "43a4a5ab-c667-4ca9-87a6-d41bcc9eb29b.jsonl",
+  "441e8a27-0412-4e84-a1ca-bee1a6c01e08.jsonl",
+  "47e8ba13-d454-4a76-9e73-84213c9873a0.jsonl",
+  "982eb25e-ebfd-46f2-803c-07e9ce104d8a.jsonl",
+  "b4a9b12f-4404-4478-b104-c949e8198607.jsonl",
+  "c57edc71-2e0d-45a8-b588-ce9835c969af.jsonl",
+  "c74404c5-1a4e-4d8f-a22d-b214e3a0d390.jsonl",
+  "cc3cc669-ec08-471c-aa20-b6ecc131910f.jsonl",
+  "d7c9962e-f89f-45f5-966d-b53dc642e62d.jsonl",
+  "de3f1fa6-fb80-445b-a16e-9d084b1f9681.jsonl",
+  "e244ed67-9a07-4b34-a69e-f1e46c780fa5.jsonl",
+  "e2fd0b60-ef5a-4ae7-af28-8c9f87ff85e5.jsonl",
+  "e8ee63ac-fdb5-46ed-9eb1-41189918c9c3.jsonl",
+  "fd46a3c5-554d-4b14-81ed-476a1fcaef7b.jsonl"
+ ]
+}

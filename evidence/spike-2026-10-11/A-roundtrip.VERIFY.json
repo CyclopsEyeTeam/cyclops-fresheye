@@ -1,0 +1,114 @@
+{
+ "run": "A-roundtrip",
+ "answers": [
+  {
+   "where": "origin",
+   "session": "114f21b9",
+   "canariesSeen": [
+    "ZEBRA-CANARY-41",
+    "MAGENTA-CANARY-77",
+    "WOMBAT-CANARY-93",
+    "OTTER-CANARY-58"
+   ],
+   "messageCount": 3,
+   "model": "claude-haiku-5-5"
+  },
+  {
+   "where": "fresh",
+   "session": "e244ed67",
+   "canariesSeen": [],
+   "messageCount": 4,
+   "model": "claude-haiku-5-5"
+  },
+  {
+   "where": "origin",
+   "session": "114f21b9",
+   "canariesSeen": [
+    "ZEBRA-CANARY-41",
+    "MAGENTA-CANARY-77",
+    "WOMBAT-CANARY-93",
+    "OTTER-CANARY-58"
+   ],
+   "messageCount": 6,
+   "model": "claude-haiku-5-5"
+  },
+  {
+   "where": "fresh",
+   "session": "e244ed67",
+   "canariesSeen": [],
+   "messageCount": 6,
+   "model": "claude-haiku-5-5"
+  }
+ ],
+ "check1_clear": [
+  {
+   "ok": true,
+   "origin": "114f21b9",
+   "fresh": "e244ed67",
+   "sameModel": "claude-haiku-5-5"
+  }
+ ],
+ "check1_resume": [
+  {
+   "landedOnTarget": true,
+   "now": "114f21b9"
+  },
+  {
+   "landedOnTarget": true,
+   "now": "e244ed67"
+  }
+ ],
+ "check2_context_fired_after_clear": true,
+ "drops_by_session": {
+  "e244ed67": [
+   "CHECK2.prompt.context:claudeMd",
+   "CHECK3.prompt.section:memory",
+   "CHECK4.prompt.attachment:hook_additional_context"
+  ]
+ },
+ "settings_hooks_still_ran": [
+  [
+   "classic.SessionStart",
+   "clear"
+  ],
+  [
+   "classic.SessionStart",
+   "resume"
+  ],
+  [
+   "classic.SessionStart",
+   "startup"
+  ],
+  [
+   "classic.UserPromptSubmit",
+   ""
+  ]
+ ],
+ "check5": {
+  "messagesUnchanged(count+sha)": true,
+  "originTranscriptAtLeaveIsExactPrefixOfFinal": true,
+  "originTranscriptBytes(leave,final)": [
+   39655,
+   49912
+  ]
+ },
+ "confirm_path": [
+  "toggle.ask.autopilot-substitute",
+  "toggle.leaving",
+  "toggle.ask.autopilot-substitute",
+  "toggle.leaving"
+ ],
+ "transcripts_on_disk": [
+  "114f21b9-4628-4a74-a139-7c0434e2518e.jsonl",
+  "43a4a5ab-c667-4ca9-87a6-d41bcc9eb29b.jsonl",
+  "441e8a27-0412-4e84-a1ca-bee1a6c01e08.jsonl",
+  "47e8ba13-d454-4a76-9e73-84213c9873a0.jsonl",
+  "982eb25e-ebfd-46f2-803c-07e9ce104d8a.jsonl",
+  "b4a9b12f-4404-4478-b104-c949e8198607.jsonl",
+  "c57edc71-2e0d-45a8-b588-ce9835c969af.jsonl",
+  "c74404c5-1a4e-4d8f-a22d-b214e3a0d390.jsonl",
+  "de3f1fa6-fb80-445b-a16e-9d084b1f9681.jsonl",
+  "e244ed67-9a07-4b34-a69e-f1e46c780fa5.jsonl",
+  "e2fd0b60-ef5a-4ae7-af28-8c9f87ff85e5.jsonl"
+ ]
+}
