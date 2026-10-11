@@ -1,0 +1,5 @@
+{
+  "name": "cyclops-fresheye",
+  "owner": { "name": "Cyclops Eye Team" },
+  "plugins": [{ "name": "cyclops-fresheye", "source": "./" }]
+}

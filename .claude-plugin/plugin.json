@@ -1,0 +1,22 @@
+{
+  "name": "cyclops-fresheye",
+  "version": "0.1.0",
+  "description": "FreshEye: a fresh active context in the same terminal (/fresheye \"prompt\"), with a confirmed switch back to the untouched original (/fresheye).",
+  "author": { "name": "Cyclops Eye Team" },
+  "keywords": ["context", "fresh-context", "review", "mod"],
+  "userConfig": {
+    "switchMode": {
+      "type": "string",
+      "title": "Switch mode for bare /fresheye",
+      "description": "ask: confirm before switching (default). toggle: switch at once. off: never switch, only show where the other conversation is.",
+      "options": ["ask", "toggle", "off"],
+      "default": "ask"
+    },
+    "confirmTimeoutSeconds": {
+      "type": "number",
+      "title": "Confirmation timeout (seconds)",
+      "description": "With no answer in this time, FreshEye stays in the current conversation. 5 to 600.",
+      "default": 60
+    }
+  }
+}
