@@ -308,7 +308,9 @@ export const register = (on, options = {}) => {
     let ledger = []
     try { ledger = (await $.store.get(STORE_LEDGER)) || [] } catch {}
     if (ledger.length === 0) { $.ui.log('FreshEye account: nothing recorded yet.'); return {} }
-    $.ui.log(`FreshEye account \u00b7 last ${Math.min(n, ledger.length)} of ${ledger.length}:\n` + ledger.slice(-n).map(formatLedgerLine).join('\n'))
+    // one dim line per entry (a single multi-line log is flattened by the terminal)
+    $.ui.log(`FreshEye account \u00b7 last ${Math.min(n, ledger.length)} of ${ledger.length}`)
+    for (const entry of ledger.slice(-n)) $.ui.log(`  ${formatLedgerLine(entry)}`)
     return {}
   })
 

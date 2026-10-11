@@ -1,7 +1,7 @@
 // Pure-logic unit tests (synthetic: no Claude Code session involved).
 import { expect, test } from 'claude-code/testing'
 import {
-  addPair, formatLedgerLine, freshContextBlocks, ledgerAppend, MAX_LEDGER, MAX_PAIRS, topicOf, normaliseMode, normaliseTimeoutSeconds, originFor, parsePrompt,
+  addPair, formatLedgerLine, freshContextBlocks, ledgerAppend, localStamp, MAX_LEDGER, MAX_PAIRS, topicOf, normaliseMode, normaliseTimeoutSeconds, originFor, parsePrompt,
   pickTarget, projectDirName, withholdAttachment, withholdSection,
 } from '../hooks/core.js'
 
@@ -76,6 +76,9 @@ test('account helpers: bounded ledger, one-line topic, readable line', async () 
   expect(l[0].n).toBe(3)
   expect(topicOf('a\n  b   c')).toBe('a b c')
   expect(topicOf('x'.repeat(200)).length).toBe(80)
-  expect(formatLedgerLine({ at: '2026-10-11T14:32:05.000Z', event: 'return', origin: 'orig-12345678', fresh: 'fresh-12345678' }))
-    .toBe('2026-10-11 14:32  returned to original  original orig-123 → fresh fresh-12')
+  const at = '2026-10-11T14:32:05.000Z'
+  expect(formatLedgerLine({ at, event: 'return', origin: 'orig-12345678', fresh: 'fresh-12345678' }))
+    .toBe(`${localStamp(at)}  returned to original  original orig-123 → fresh fresh-12`)
+  const d = new Date(at)
+  expect(localStamp(at)).toBe(`2026-10-${String(d.getDate()).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`)
 })

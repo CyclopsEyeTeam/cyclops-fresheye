@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 — 2026-10-11
+
+- **`/fresheye-log` readability:** times show in your local time (`YYYY-MM-DD HH:MM`) instead of UTC, and each entry is on its own line instead of running together.
+- No behaviour change to opening, switching or withholding. 32 unit/kit tests pass; the real-session suite was not re-run for this display-only change.
+
 ## 0.2.0 — 2026-10-11
 
 - **On-screen strip above the prompt** while FreshEye is active: `◎ FreshEye · Fresh Context`, when it opened, which original it keeps, and what is withheld. It draws alongside other mods' bands, such as Spark's, instead of replacing them.

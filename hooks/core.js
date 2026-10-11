@@ -107,6 +107,14 @@ export function hhmm(ms) {
   return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
 }
 
+/** "YYYY-MM-DD HH:MM" in the machine's local time (the account stores UTC ISO times). */
+export function localStamp(iso) {
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return String(iso ?? '')
+  const p = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`
+}
+
 const VERB = {
   open: 'opened FreshEye', 'open-failed': 'could not open', return: 'returned to original', enter: 'entered FreshEye',
   stale: 'target not found', 'switch-failed': 'switch failed', 'confirm-cancelled': 'stayed (cancelled)',
@@ -115,7 +123,7 @@ const VERB = {
 
 /** One readable line per ledger entry, e.g. "2026-10-11 14:32  opened FreshEye  original 27662d61 → fresh a0e4a8b2  "Review the…"" */
 export function formatLedgerLine(e) {
-  const when = String(e.at ?? '').replace('T', ' ').slice(0, 16)
+  const when = localStamp(e.at)
   const ids = e.fresh || e.origin || e.from || e.to
     ? [e.origin && `original ${short(e.origin)}`, e.fresh && `fresh ${short(e.fresh)}`, !e.origin && e.from && `from ${short(e.from)}`, !e.fresh && e.to && `to ${short(e.to)}`].filter(Boolean).join(' → ')
     : ''
