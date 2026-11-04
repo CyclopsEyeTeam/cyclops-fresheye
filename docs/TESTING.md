@@ -5,7 +5,7 @@ Two layers. Only the second proves native session switching.
 ## 1. Unit and kit tests (synthetic)
 
 ```bash
-claude plugin test            # from the repo root: 32 tests
+claude plugin test            # from the repo root: 35 tests
 ```
 
 - `tests/core.test.ts` covers pure decisions: argument parsing, target choice (never guesses), the pair table and the withholding rules.
