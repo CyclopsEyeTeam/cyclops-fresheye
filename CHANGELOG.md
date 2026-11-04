@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 — 2026-11-04
+
+- **Desktop app: a clear way back instead of a raw error.** The Desktop app's Code tab has no `/resume`, so returning with bare `/fresheye` failed with `HooksError: … no command named /resume in this session`. FreshEye now recognises that refusal and names the other conversation's full id, with both ways back: open it from the app's session list, or run `claude --resume <id>` in a terminal. It then stops asking a switch question it can't carry out. The account records `switch-failed (no /resume)`.
+- Any other refused switch now also names the full id of the other conversation.
+- 35 unit/kit tests pass (new: the Desktop refusal string, the way-back text, a refused switch). The real-session suite was not re-run, and no Desktop session was automated.
+
 ## 0.2.1 — 2026-10-11
 
 - **`/fresheye-log` readability:** times show in your local time (`YYYY-MM-DD HH:MM`) instead of UTC, and each entry is on its own line instead of running together.

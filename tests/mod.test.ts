@@ -5,7 +5,7 @@ import { expect, mock, test } from 'claude-code/testing'
 
 type Rec = { logs: string[]; toasts: string[]; commands: { command: string; args?: string }[]; submitted: string[]; store: Map<string, unknown> }
 
-function stubs(on: any, opts: { current: { id: string }; pairs?: Record<string, unknown>; surfaces?: string[]; clearFails?: boolean; exists?: boolean; skipRegister?: boolean; pairsSetFails?: boolean }) {
+function stubs(on: any, opts: { current: { id: string }; pairs?: Record<string, unknown>; surfaces?: string[]; clearFails?: boolean; exists?: boolean; skipRegister?: boolean; pairsSetFails?: boolean; resumeRefused?: boolean }) {
   const rec: Rec = { logs: [], toasts: [], commands: [], submitted: [], store: new Map() }
   if (opts.pairs) rec.store.set('pairs', opts.pairs)
   const clock = mock.clock(on)
@@ -34,7 +34,10 @@ function stubs(on: any, opts: { current: { id: string }; pairs?: Record<string, 
       if (opts.clearFails) return { deny: 'clear unavailable' }
       opts.current.id = 'fresh-1'
     }
-    if (e.command === 'resume') opts.current.id = e.args
+    if (e.command === 'resume') {
+      if (opts.resumeRefused) throw new Error('resume unavailable')   // the kit surfaces this as a rejected $.command.run
+      opts.current.id = e.args
+    }
     return { text: '' }
   })
   return { rec, clock }
@@ -316,4 +319,18 @@ test('account: cancelled and timed-out questions are recorded', async ($, on) =>
   await clock.settle()
   await clock.advance(61_000)
   expect((rec.store.get('ledger') as any[]).map((x) => x.event)).toEqual(['confirm-cancelled', 'confirm-timeout'])
+})
+
+test('a refused /resume names the full id of the other conversation; nothing switched', async ($, on) => {
+  const cur = { id: 'fresh-1' }
+  const { rec, clock } = stubs(on, { current: cur, pairs: PAIRS, surfaces: ['desktop'], resumeRefused: true })
+  await $.session.start({ surface: 'desktop', isInteractive: true, cwd: '/repo' })
+  await $.command.run({ command: 'fresheye', args: '' })
+  await clock.settle()
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' } as any)
+  await ui.press({ key: 'fresheye-switch' })
+  await clock.settle()
+  expect(cur.id).toBe('fresh-1')
+  expect(rec.logs.join('\n')).toMatch(/switch was refused .* the other conversation is orig-1 \(\/resume orig-1\)/)
+  expect((rec.store.get('ledger') as any[]).at(-1)).toMatchObject({ event: 'switch-failed', reason: 'refused' })
 })

@@ -1,7 +1,7 @@
 // Pure-logic unit tests (synthetic: no Claude Code session involved).
 import { expect, test } from 'claude-code/testing'
 import {
-  addPair, formatLedgerLine, freshContextBlocks, ledgerAppend, localStamp, MAX_LEDGER, MAX_PAIRS, topicOf, normaliseMode, normaliseTimeoutSeconds, originFor, parsePrompt,
+  addPair, formatLedgerLine, isMissingCommand, wayBackText, freshContextBlocks, ledgerAppend, localStamp, MAX_LEDGER, MAX_PAIRS, topicOf, normaliseMode, normaliseTimeoutSeconds, originFor, parsePrompt,
   pickTarget, projectDirName, withholdAttachment, withholdSection,
 } from '../hooks/core.js'
 
@@ -81,4 +81,22 @@ test('account helpers: bounded ledger, one-line topic, readable line', async () 
     .toBe(`${localStamp(at)}  returned to original  original orig-123 → fresh fresh-12`)
   const d = new Date(at)
   expect(localStamp(at)).toBe(`2026-10-${String(d.getDate()).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`)
+})
+
+test('isMissingCommand recognises the Desktop app refusal of /resume, and nothing else', async () => {
+  const desktop = 'HooksError: cyclops-fresheye: $.command.run: no command named /resume in this session'   // seen live
+  expect(isMissingCommand(desktop, 'resume')).toBe(true)
+  expect(isMissingCommand(new Error(desktop), 'resume')).toBe(true)
+  expect(isMissingCommand(desktop, 'clear')).toBe(false)
+  expect(isMissingCommand('cyclops-fresheye: $.command.run: no command named /resume-all in this session', 'resume')).toBe(false)
+  expect(isMissingCommand('HooksError: no implementation for command.run', 'resume')).toBe(false)
+  expect(isMissingCommand(undefined, 'resume')).toBe(false)
+})
+
+test('wayBackText names the full target id and both ways back', async () => {
+  const t = wayBackText('fresh-1234567890', { direction: 'return', targetId: 'orig-abcdef-0123', root: '/repo' })
+  expect(t).toMatch(/still in fresh-12/)
+  expect(t).toMatch(/original conversation, open orig-abcdef-0123 from the app’s session list/)
+  expect(t).toMatch(/`claude --resume orig-abcdef-0123` in a terminal \(in \/repo\)/)
+  expect(wayBackText('orig-1', { direction: 'enter', targetId: 'fresh-1' })).toMatch(/FreshEye conversation, open fresh-1 .* terminal\.$/)
 })

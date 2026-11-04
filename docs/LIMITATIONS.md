@@ -1,4 +1,4 @@
-# Known limitations (0.2.1)
+# Known limitations (0.2.2)
 
 **What FreshEye withholds, and what it doesn't**
 
@@ -26,7 +26,7 @@
 
 **Not tested**
 
-13. **Desktop app Code tab.** Expected to work (same render sites) but only the terminal was accepted. The indicator's look was checked by kit tests, not by reading a live terminal.
+13. **Desktop app Code tab: opening works, switching back does not.** The Code tab has no `/resume` command (it switches conversations from its own session list), so bare `/fresheye` can't switch there. Since 0.2.2 FreshEye says so, names the other conversation's full id, and tells you to open it from the session list or run `claude --resume <id>` in a terminal. After the first refusal it stops offering the switch question for the rest of that run. Opening (`/clear`) was seen working in the Desktop app; the rest of the Desktop flow is still not acceptance-tested.
 14. **Session-granted approvals.** Permission decisions were identical in every conversation, but approvals granted interactively during a session (which need a person to answer prompts) were not exercised across `/clear` and `/resume`.
 
 **Naming**

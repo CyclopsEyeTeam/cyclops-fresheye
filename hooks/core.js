@@ -129,3 +129,17 @@ export function formatLedgerLine(e) {
     : ''
   return [when, VERB[e.event] ?? e.event, ids, e.topic ? `“${e.topic}”` : '', e.reason ? `(${e.reason})` : ''].filter(Boolean).join('  ')
 }
+
+/** True when a $.command.run refusal means the app has no such command (e.g. /resume in the Desktop app's Code tab). */
+export function isMissingCommand(err, name) {
+  const esc = String(name).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(`no command named /?${esc}(?![\\w-])`, 'i').test(String(err?.message ?? err))
+}
+
+/** The way back by hand when FreshEye can't run /resume: names the full id. */
+export function wayBackText(hereId, target) {
+  const what = target.direction === 'return' ? 'original' : 'FreshEye'
+  const where = target.root ? ` (in ${target.root})` : ''
+  return `FreshEye: this app has no /resume command, so FreshEye can’t switch for you. You are still in ${short(hereId)}; nothing was switched or deleted. ` +
+    `To go to the ${what} conversation, open ${target.targetId} from the app’s session list, or run \`claude --resume ${target.targetId}\` in a terminal${where}.`
+}

@@ -10,7 +10,7 @@
 // Claude Code mods API (early access, v2.1.287+). Built and accepted against Claude Code 2.1.296.
 
 import {
-  MODE_LABEL, addPair, formatLedgerLine, freshContextBlocks, hhmm, ledgerAppend, normaliseMode, normaliseTimeoutSeconds,
+  MODE_LABEL, addPair, formatLedgerLine, isMissingCommand, wayBackText, freshContextBlocks, hhmm, ledgerAppend, normaliseMode, normaliseTimeoutSeconds,
   originFor, parsePrompt, pickTarget, projectDirName, short, topicOf, withholdAttachment, withholdSection,
 } from './core.js'
 
@@ -28,6 +28,7 @@ let timeoutMs = 60_000
 let pairs = {}            // { [freshId]: { originId, originRoot, model, createdAt } }
 let opening = null        // { originId } while /clear is in flight
 let switching = false     // a /resume is in flight
+let resumeMissing = false // this app has no /resume command (e.g. the Desktop app's Code tab); learned on first refusal
 let confirm = null        // { fromId, toId, direction, timer }
 let active = false        // is the current conversation a FreshEye conversation (drives the indicator)
 let busy = false          // a /fresheye run is between its command and its first state change
@@ -190,6 +191,7 @@ async function offerSwitch($) {
     $.ui.log(`FreshEye: switching is off. You are in ${active ? 'FreshEye' : 'the original'} ${short(here)}; its ${what} conversation is ${short(target.targetId)} (/resume ${target.targetId}).`)
     return
   }
+  if (resumeMissing) { $.ui.log(wayBackText(here, target)); return }   // don't ask about a switch that can't happen
   let surfaces = []
   try { surfaces = await $.session.surfaces() } catch {}
   if (mode === 'toggle') {
@@ -235,7 +237,15 @@ async function doSwitch($, here, target) {
     try {
       await $.command.run({ command: 'resume', args: target.targetId })   // verified: append-only, original intact
     } catch (err) {
-      $.ui.log(`FreshEye: the switch was refused (${String(err)}). You are still in ${short(here)}.`)
+      if (isMissingCommand(err, 'resume')) {
+        resumeMissing = true
+        debug($, 'switch.no-resume', { here, target, error: String(err) })
+        $.ui.log(wayBackText(here, target))
+        $.ui.toast('FreshEye can’t switch in this app — see the log for the way back')
+        await account($, 'switch-failed', { from: here, to: target.targetId, reason: 'no /resume' })
+        return
+      }
+      $.ui.log(`FreshEye: the switch was refused (${String(err)}). You are still in ${short(here)}; the other conversation is ${target.targetId} (/resume ${target.targetId}).`)
       await account($, 'switch-failed', { from: here, to: target.targetId, reason: 'refused' })
       return
     }

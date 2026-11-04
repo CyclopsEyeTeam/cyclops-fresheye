@@ -1,6 +1,6 @@
 {
   "name": "cyclops-fresheye",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Fresh eyes on your work: the same model reviews it in a fresh context, without CLAUDE.md, memory or hook context, then you switch back with nothing lost.",
   "displayName": "Cyclops FreshEye",
   "author": { "name": "Cyclops Eye Team", "url": "https://github.com/CyclopsEyeTeam" },
